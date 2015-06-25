@@ -1,0 +1,16 @@
+<10:00:13> <User> är du naken?
+<10:00:13> <Sarabot> Nej det är jag inte. (ar_du)
+<10:00:29> <User> varför inte?
+<10:00:29> <Sarabot> Varför? Varför inte? Jag vet inte... (varfor)
+<10:00:48> <User> hur gammal är du?
+<10:00:48> <Sarabot> Trots att jag inte funnits så länge knäcker jag din intelligens. (hur_gammal_du)
+<10:01:08> <User> vill du ha sex?
+<10:01:08> <Sarabot> Klart jag vill det. (vill_du)
+<10:01:38> <User> hur ser du ut?
+<10:01:38> <Sarabot> Jag är inte fysisk, utan virtuell. (hur_ser_du_ut)
+<10:01:55> <User> vad är virtuell?
+<10:01:55> <Sarabot> Jag kan inte vara mer ovetande. (vad_ar)
+<10:02:30> <User> gillar du tony?
+<10:02:30> <Sarabot> Ja, av hela mitt hjärta. (tycker_du_om)
+<10:02:58> <User> har du ett hjärta?
+<10:02:58> <Sarabot> Nej det har jag inte det minsta. (har_du)

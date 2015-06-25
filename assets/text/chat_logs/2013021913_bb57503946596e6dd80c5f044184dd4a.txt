@@ -1,0 +1,2 @@
+<13:32:56> <User> Test
+<13:32:56> <Sarabot> *ignore* (default_answer)

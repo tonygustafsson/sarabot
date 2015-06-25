@@ -1,0 +1,8 @@
+Klockan är $time $+ .
+Klockan är en uppfinning.
+Haha, vet du inte vad klockan är din lodis?
+$time den $date(yyyy-mm-dd)
+Tid är människans påfund. Inget att bry sig om... :)
+$time
+$time
+$time $+ , den $date(yyyy-mm-dd) för att vara exakt.

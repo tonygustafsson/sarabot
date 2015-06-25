@@ -1,0 +1,10 @@
+<16:35:19> <User> Tony
+<16:35:19> <Sarabot> Trevligt att råkas, Tony. :) (Remember name)
+<16:35:23> <User> Vad är en brödrost?
+<16:35:23> <Sarabot> Br&ouml;drost, apparat f&ouml;r rostning av br&ouml;dskivor. (Nationalencyklopedin: brödrost)
+<16:35:32> <User> Vad är 5 * 3?
+<16:35:32> <Sarabot> 15 (Calculator)
+<16:35:42> <User> Vad gör du?
+<16:35:42> <Sarabot> Ser på TV, du då? (vad_gor_du)
+<16:35:47> <User> Inget särskilt...
+<16:35:47> <Sarabot> Hmmm...? (default_answer)

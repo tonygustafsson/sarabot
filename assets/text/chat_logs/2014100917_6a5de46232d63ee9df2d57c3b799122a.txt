@@ -1,0 +1,12 @@
+<17:52:24> <User> flurdi
+<17:52:24> <Sarabot> Trevligt att råkas, Flurdi. :) (Remember name)
+<17:52:31> <User> vad haru påre
+<17:52:31> <Sarabot> Åh ja bah, fatta inget... (vad_har)
+<17:52:37> <User> fattdy
+<17:52:37> <Sarabot> Öh, langa hit en Cola! (default_answer)
+<17:52:41> <User> dumty
+<17:52:41> <Sarabot> Öh, langa hit en Cola! (default_answer)
+<17:52:43> <User> nej
+<17:52:43> <Sarabot> Okay. (nej)
+<17:52:48> <User> dum
+<17:52:48> <Sarabot> Hur mår du annars? (default_answer)

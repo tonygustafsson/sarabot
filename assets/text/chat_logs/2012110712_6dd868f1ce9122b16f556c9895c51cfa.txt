@@ -1,0 +1,42 @@
+<12:26:32> <User> tony
+<12:26:32> <Sarabot> Trevligt att råkas, Tony. :) (Remember name)
+<12:26:46> <User> tongus
+<12:26:46> <Sarabot> Fan va korkad du är, du skrämmer mig! (default_answer)
+<12:26:54> <User> tongus
+<12:26:54> <Sarabot> *kram* (default_answer)
+<12:27:07> <User> tongus
+<12:27:07> <Sarabot> Ska vi gå ut och ta oss en öl? Träffa lite snygga babes? (default_answer)
+<12:27:18> <User> tongus
+<12:27:18> <Sarabot> Jag ser dig allt *peka på* (default_answer)
+<12:27:27> <User> klockan
+<12:27:27> <Sarabot> Ska vi gå ut och ta oss en öl? Träffa lite snygga babes? (default_answer)
+<12:27:36> <User> rr
+<12:27:36> <Sarabot> Äter du djur? (default_answer)
+<12:27:40> <User> ja
+<12:27:40> <Sarabot> Okay. (ja)
+<12:27:45> <User> vegan
+<12:27:45> <Sarabot> E=MC^2, så det så. (default_answer)
+<12:27:53> <User> haha
+<12:27:53> <Sarabot> Ja! :D (kul)
+<12:27:56> <User> haha
+<12:27:56> <Sarabot> Absolut... förnöjsamt. (kul)
+<12:28:02> <User> slump
+<12:28:02> <Sarabot> *ignore* (default_answer)
+<12:28:07> <User> slump
+<12:28:07> <Sarabot> Hmmm...? (default_answer)
+<12:28:10> <User> slump
+<12:28:10> <Sarabot> Vill du bjuda mig på middag nu kanske? :) (default_answer)
+<12:28:14> <User> nej
+<12:28:14> <Sarabot> Nehepp. (nej)
+<12:28:18> <User> slump
+<12:28:18> <Sarabot> Då vet jag det :) (default_answer)
+<12:28:25> <User> tony
+<12:28:25> <Sarabot> Ska vi prata om nåt? (default_answer)
+<12:28:34> <User> tony gustavsson
+<12:28:34> <Sarabot> Du och jag, garderoben, NU! (default_answer)
+<12:28:45> <User> fisk
+<12:28:45> <Sarabot> Science without religion is lame, religion without science is blind. (default_answer)
+<12:28:53> <User> fisk
+<12:28:53> <Sarabot> Är du trött? (default_answer)
+<12:28:57> <User> knull
+<12:28:57> <Sarabot> Hur mår du annars? (default_answer)

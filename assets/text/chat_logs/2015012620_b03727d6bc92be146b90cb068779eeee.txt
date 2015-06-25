@@ -1,0 +1,52 @@
+<20:24:37> <User> Tony heter jag
+<20:24:37> <Sarabot> Trevligt att råkas, Tony. :) (Remember name)
+<20:24:40> <User> Ajemen
+<20:24:40> <Sarabot> Science without religion is lame, religion without science is blind. (default_answer)
+<20:24:42> <User> Ok
+<20:24:42> <Sarabot> Jahopp. (default_answer)
+<20:24:58> <User> Vad händer?
+<20:24:58> <Sarabot> Jag stirrar bara ut genom fönstret i brist på annat. (vad_gor_du)
+<20:25:02> <User> Kul du
+<20:25:02> <Sarabot> Absolut... förnöjsamt. (kul)
+<20:25:12> <User> Vad är tranbärsjuice?
+<20:25:12> <Sarabot> Tänk, jag vet inte alls vad du talar om. (vad_ar)
+<20:25:22> <User> Vad är en puttekula?
+<20:25:22> <Sarabot> . (Nationalencyklopedin: puttekula)
+<20:25:26> <User> hah
+<20:25:26> <Sarabot> Jaså, jaså... (default_answer)
+<20:25:34> <User> Vad är en tranbärsjuice?
+<20:25:34> <Sarabot> . (Nationalencyklopedin: tranbärsjuice)
+<20:25:40> <User> fel på dig
+<20:25:40> <Sarabot> Jahopp. (default_answer)
+<20:25:42> <User> Det är fel på dig
+<20:25:42> <Sarabot> Tycker du det? (det_ar)
+<20:25:44> <User> ja
+<20:25:44> <Sarabot> OK. (ja)
+<20:25:45> <User> ok
+<20:25:45> <Sarabot> Himlen är blå, visste du det? (default_answer)
+<20:25:46> <User> ok
+<20:25:46> <Sarabot> Äter du djur? (default_answer)
+<20:25:47> <User> ok
+<20:25:47> <Sarabot> Öh, langa hit en Cola! (default_answer)
+<20:25:47> <User> ok
+<20:25:47> <Sarabot> Din organiska massa har ingen chans mot min elektronik. MOWHAHAH! (default_answer)
+<20:25:48> <User> ok
+<20:25:48> <Sarabot> Vill du bjuda mig på middag nu kanske? :) (default_answer)
+<20:25:49> <User> ok
+<20:25:49> <Sarabot> Ärligt talat, duscha!! (default_answer)
+<20:25:49> <User> ok
+<20:25:49> <Sarabot> Ibland säger jag bara såna här störande meningar utan tillsynes anledning :) (default_answer)
+<20:25:57> <User> ^^
+<20:25:57> <Sarabot> asså... duu å jaaah. (default_answer)
+<20:26:00> <User> :)
+<20:26:00> <Sarabot> :oP (smiley)
+<20:26:05> <User> :-(
+<20:26:05> <Sarabot> Jag vet inte vad du talar om just nu. (default_answer)
+<20:26:08> <User> exit
+<20:26:08> <Sarabot> Är du hungrig? (default_answer)
+<20:26:10> <User> nej
+<20:26:10> <Sarabot> Jag förstår. (nej)
+<20:26:13> <User> hejdå
+<20:26:13> <Sarabot> Hejdå Tony! (hej_da)
+<20:26:15> <User> hejd¨
+<20:26:15> <Sarabot> Hej! (hej)

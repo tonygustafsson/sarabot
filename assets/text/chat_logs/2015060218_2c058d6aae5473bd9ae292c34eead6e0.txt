@@ -1,0 +1,18 @@
+<18:24:35> <User> Oskar
+<18:24:35> <Sarabot> Trevligt att råkas, Oskar. :) (Remember name)
+<18:24:50> <User> Vad gillar du?
+<18:24:50> <Sarabot> Jo det gillas skarpt! (vad_tycker_du)
+<18:25:42> <User> Varför är jag sjuk hela tiden?
+<18:25:42> <Sarabot> Jag vet inte varför. (varfor_ar)
+<18:26:00> <User> Vad gillar du att göra?
+<18:26:00> <Sarabot> Min melodi, så att säga... (vad_tycker_du)
+<18:26:21> <User> Gillar du Zlatan?
+<18:26:21> <Sarabot> Ja, av hela mitt hjärta. (tycker_du_om)
+<18:27:02> <User> Vet du vem Tony är?
+<18:27:02> <Sarabot> Inte då. (question)
+<18:27:18> <User> Han skapade dig
+<18:27:18> <Sarabot> Då vet jag det :) (default_answer)
+<18:27:49> <User> Nu måste jag äta, jag är hungrig
+<18:27:49> <Sarabot> Jag tror inte på måsten jag inte. (maste)
+<18:28:11> <User> Hejdå!
+<18:28:11> <Sarabot> Hejdå Oskar! (hej_da)

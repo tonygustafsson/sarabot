@@ -1,0 +1,16 @@
+<00:08:02> <User> Orvar
+<00:08:02> <Sarabot> Trevligt att råkas, Orvar. :) (Remember name)
+<00:08:08> <User> Detsamma!
+<00:08:08> <Sarabot> *ignore* (default_answer)
+<00:08:15> <User> Vad heter du då?
+<00:08:15> <Sarabot> Sara, mitt efternamn skulle väl vara Bot =) (vad_heter_du)
+<00:08:24> <User> Hur gammal är du?
+<00:08:24> <Sarabot> Trots att jag inte funnits så länge knäcker jag din intelligens. (hur_gammal_du)
+<00:08:28> <User> Nej
+<00:08:28> <Sarabot> Det var som fan. (nej)
+<00:08:34> <User> Håll tyst
+<00:08:34> <Sarabot> Jag vet inte vad du talar om just nu. (default_answer)
+<00:08:39> <User> Inte jag heller
+<00:08:39> <Sarabot> Jag är den bästa boten i världen! (default_answer)
+<00:08:50> <User> Vad heter huvudstaden i Norge?
+<00:08:50> <Sarabot> Jag vet inte. (vad)

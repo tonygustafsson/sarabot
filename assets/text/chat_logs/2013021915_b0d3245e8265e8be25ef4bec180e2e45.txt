@@ -1,0 +1,10 @@
+<15:03:57> <User> Roger
+<15:03:57> <Sarabot> Trevligt att råkas, Roger. :) (Remember name)
+<15:04:09> <User> Vad gör du ?
+<15:04:09> <Sarabot> Jag hoppar upp och ner i brist på annat. (vad_gor_du)
+<15:04:28> <User> Var är du ?
+<15:04:28> <Sarabot> I din röv =) (var_ar)
+<15:04:43> <User> du ljuger
+<15:04:43> <Sarabot> Himlen är blå, visste du det? (default_answer)
+<15:04:50> <User> ja
+<15:04:50> <Sarabot> Jahapp. (ja)

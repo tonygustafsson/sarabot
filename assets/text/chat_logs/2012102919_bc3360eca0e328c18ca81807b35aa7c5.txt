@@ -1,0 +1,16 @@
+<19:03:40> <User> Oskar
+<19:03:40> <Sarabot> Trevligt att råkas, Oskar. :) (Remember name)
+<19:04:02> <User> Tack detsamma! Vill du ha sex?
+<19:04:02> <Sarabot> Det e lugnt... (tack)
+<19:04:26> <User> Vem är du?
+<19:04:26> <Sarabot> Jag är en simulerad intelligens. (vad_ar_du)
+<19:04:39> <User> Snygg?
+<19:04:39> <Sarabot> Kanske? (question)
+<19:04:54> <User> Jag tycker det!
+<19:04:54> <Sarabot> Det brukar jag med göra :) (jag)
+<19:05:10> <User> Vad tycker du om mig då?
+<19:05:10> <Sarabot> Inte min melodi direkt... (vad_tycker_du)
+<19:05:26> <User> Haha! Du har humor!
+<19:05:26> <Sarabot> Ja, visst är det? :D (kul)
+<19:05:44> <User> Vem faller du för då?
+<19:05:44> <Sarabot> Din mamma! ;) (vem)

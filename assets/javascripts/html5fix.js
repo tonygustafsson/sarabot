@@ -1,0 +1,2 @@
+/* This is needed for browsers (ok, IE!) to show CSS styling for elements it doesn't recognise. Like HTML5 elements. */
+(function(){if(!/*@cc_on!@*/0)return;var e = "abbr,article,aside,audio,canvas,datalist,details,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(','),i=e.length;while(i--){document.createElement(e[i])}})();
