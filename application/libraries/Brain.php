@@ -32,6 +32,8 @@ class Brain
 			case (preg_match('/^vad är (.*)(klockan|tiden)/', $input) ? true : false): return $this->get_time(); break;
 			case (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input) ? true : false): return $this->get_date(); break;
 			case (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input) ? true : false): return $this->get_week(); break;
+			case (preg_match('/^(vad)(.*)heter(.*)jag/', $input) ? true : false): return $this->get_name(); break;
+			case (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input) ? true : false): return $this->get_name(); break;
 
 			case (preg_match('/^(hejdå|farväl|hej då|far väl|baj baj|bye|quit)(.*)/', $input) ? true : false): return $this->read_file("hej_da"); break;
 			case (preg_match('/^(hej|tjena|morrs|hallå|hejsan|halloj)(.*)/', $input) ? true : false): return $this->read_file("hej"); break;
@@ -365,6 +367,11 @@ class Brain
 		$this->CI->session->set_userdata('ask_for_name', 'false');
 
 		return array('answer' => 'Trevligt att råkas, ' . $name . '. :)', 'answer_id' => 'Remember name');
+	}
+	
+	public function get_name()
+	{
+		return array('answer' => $this->CI->session->userdata('name'), 'answer_id' => 'Get name');
 	}
 
 	public function get_calc($input)
