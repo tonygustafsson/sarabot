@@ -6,7 +6,7 @@
 	<meta name="author" content="Tony Gustafsson">
 	<meta name="description" content="En intelligent samtalsrobot som kan hjälpa dig att fördriva tiden en stund.">
 	<meta name="keywords" content="sarabot, samtalsrobot, robot, chatbot, chatbott, chatrobot, samtalsbot, sara, artificiell intelligens, simulerad intelligens">
-
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url()?>assets/stylesheets/screen.css">
 
 	<title>Sarabot</title>

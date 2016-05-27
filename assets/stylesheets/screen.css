@@ -6,38 +6,38 @@ img {
 	border: none;
 }
 
-section#metabox {
+#metabox {
 	/* This box is only for Google :) */
 	display: none;
 }
 
-section#main {
+#main {
 	width: 80%;
 	margin: 0 10%;
 	text-align: center;
 }
 
-section#main h1 {
+#main h1 {
 	text-align: center;
 	letter-spacing: 2px;
 }
 
-section#main h1 a {
+#main h1 a {
 	display: block;
 	padding: 1em 0;
 	font-size: 200%;
 	text-decoration: none;
 	color: #000;
-	font-family: Georgia, Times, serif;
+	font-family: 'Roboto Slab', serif;
 	text-shadow: 2px 2px 2px #aaa;
 }
 
-section#main form {
+#main form {
 	display: block;
 	padding: 1em 0;
 }
 
-section#main form input[type=text] {
+#main form input[type=text] {
 	width: 400px;
 	height: 30px;
 	font-family: 'Lucida grande', Helvetica, sans-serif;
@@ -45,21 +45,22 @@ section#main form input[type=text] {
 	padding: 0 0.5em;
 }
 
-section#main form input[type=submit], section#main form input[type=button] {
+#main form input[type=submit], section#main form input[type=button] {
 	width: 100px;
 	height: 38px;
 	font-family: 'Lucida grande', Helvetica, sans-serif;
 	font-size: 120%;
+	cursor: pointer;
 }
 
-section#main p {
-	font-family: 'Lucida grande', Helvetica, sans-serif;
+#main p {
+	font-family: 'Roboto Slab', serif;
 	font-size: 120%;
 	text-align: left;
 	padding: 0 20%;
 }
 
-section#main span.greyed {
+#main span.greyed {
 	color: #888;
 }
 
