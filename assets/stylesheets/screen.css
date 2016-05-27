@@ -29,7 +29,14 @@ img {
 	text-decoration: none;
 	color: #000;
 	font-family: 'Roboto Slab', serif;
-	text-shadow: 2px 2px 2px #aaa;
+}
+
+.bot-img {
+	transition: opacity 150ms;
+}
+
+.bot-img.thinking {
+	opacity: .9;
 }
 
 #main form {
