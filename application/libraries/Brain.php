@@ -11,20 +11,18 @@ class Brain
 	{
 		$stripped_input = str_replace("?", "", $input);
 		$stripped_input = str_replace("!", "", $stripped_input);
+		$stripped_input = str_replace(".", "", $stripped_input);
+		$stripped_input = str_replace(",", "", $stripped_input);
 		$words = explode(" ", $stripped_input);
 
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
-			$words = str_replace("?", "", $input);
-			$words = str_replace("!", "", $words);
-			$words = str_replace(",", "", $words);
-			$words = str_replace(".", "", $words);
-			$words = str_replace("jag heter ", "", $input);
-			$words = str_replace("mitt namn är ", "", $words);
-			$words = str_replace("namnet är ", "", $words);
-			$words = str_replace("hej", "", $words);
+			$position = 0;
+			if ($words[0] == "jag" && $words[1] == "heter") $position = 2;
+			if ($words[0] == "mitt" && $words[1] == "namn") $position = 4;
+			if ($words[0] == "namnet" && $words[1] == "är") $position = 2;
 			
-			return $this->remember_name($words);
+			return $this->remember_name($words[$position]);
 		}
 
 		switch($input)
