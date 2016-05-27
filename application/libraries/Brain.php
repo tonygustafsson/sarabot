@@ -238,6 +238,7 @@ class Brain
 			case (preg_match('/^vad kan(.*)/', $input) ? true : false): return $this->read_file("vad_kan"); break;
 			case (preg_match('/^vad kommer(.*)/', $input) ? true : false): return $this->read_file("vad_kommer"); break;
 			case (preg_match('/^vad var(.*)/', $input) ? true : false): return $this->read_file("vad_var"); break;
+			case (preg_match('/^vad vill(.*)du/', $input) ? true : false): return $this->read_file("vad_vill_du"); break;
 			case (preg_match('/^vad vill(.*)/', $input) ? true : false): return $this->read_file("vad_vill"); break;
 
 			case (preg_match('/^vad ska(.*)/', $input) ? true : false): return $this->read_file("vad_ska"); break;
