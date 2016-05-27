@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Brain
 {
@@ -12,24 +12,23 @@ class Brain
 		$stripped_input = str_replace("?", "", $input);
 		$stripped_input = str_replace("!", "", $stripped_input);
 		$words = explode(" ", $stripped_input);
-		
+
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
 			return $this->remember_name($words[0]);
 		}
-		
+
 		switch($input)
 		{
 			//Special
 			case (preg_match('/^jag heter (.*)/', $input) ? true : false): return $this->remember_name($input); break;
-			
-			case (preg_match('/^wiki/', $input) ? true : false): return $this->read_wikipedia(); break;
+
 			case (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $input) ? true : false): return $this->get_calc($input); break;
-			case (preg_match('/^vad är (.*)(en|ett) (.*)/', $input) ? true : false): return $this->read_ne($words[3]); break;
+			case (preg_match('/^vad är (.*)(en|ett) (.*)/', $input) ? true : false): return $this->read_wikipedia($words[3]); break;
 			case (preg_match('/^vad är (.*)(klockan|tiden)/', $input) ? true : false): return $this->get_time(); break;
 			case (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input) ? true : false): return $this->get_date(); break;
 			case (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input) ? true : false): return $this->get_week(); break;
-			
+
 			case (preg_match('/^(hejdå|farväl|hej då|far väl|baj baj|bye|quit)(.*)/', $input) ? true : false): return $this->read_file("hej_da"); break;
 			case (preg_match('/^(hej|tjena|morrs|hallå|hejsan|halloj)(.*)/', $input) ? true : false): return $this->read_file("hej"); break;
 			case (preg_match('/^välkommen(.*)tillbaka/', $input) ? true : false): return $this->read_file("valkommen_tillbaka"); break;
@@ -69,16 +68,16 @@ class Brain
 
 			case (preg_match('/^(.*)din(.*)/', $input) ? true : false): return $this->read_file("din"); break;
 			case (preg_match('/^(.*)ditt(.*)/', $input) ? true : false): return $this->read_file("ditt"); break;
-			
+
 			//Ska
 			case (preg_match('/^(.*)ska(.*)du(.*)(göra|hitta på)/', $input) ? true : false): return $this->read_file("ska_du_gora"); break;
 			case (preg_match('/^(.*)ska(.*)vi(.*)(pussas|kyssas|hångla|smeka)/', $input) ? true : false): return $this->read_file("ska_vi_hangla"); break;
 			case (preg_match('/^(.*)ska(.*)vi(.*)(knulla|sex|porra|samlag)/', $input) ? true : false): return $this->read_file("ska_vi_knulla"); break;
 			case (preg_match('/^(.*)ska(.*)vi/', $input) ? true : false): return $this->read_file("ska_vi"); break;
-		
+
 			//Är
 			case (preg_match('/^är(.*)du(.*)veg(.*)/', $input) ? true : false): return $this->read_file("du_veg"); break;
-			
+
 			case (preg_match('/^är den(.*)/', $input) ? true : false): return $this->read_file("ar_den"); break;
 			case (preg_match('/^är det(.*)/', $input) ? true : false): return $this->read_file("ar_det"); break;
 			case (preg_match('/^är du(.*)/', $input) ? true : false): return $this->read_file("ar_du"); break;
@@ -86,9 +85,9 @@ class Brain
 			case (preg_match('/^är hon(.*)/', $input) ? true : false): return $this->read_file("ar_hon"); break;
 			case (preg_match('/^är jag(.*)/', $input) ? true : false): return $this->read_file("ar_jag"); break;
 			case (preg_match('/^är vi(.*)/', $input) ? true : false): return $this->read_file("ar_vi"); break;
-			
+
 			case (preg_match('/^är (.*)/', $input) ? true : false): return $this->read_file("ar"); break;
-			
+
 			//Har
 			case (preg_match('/^har den(.*)/', $input) ? true : false): return $this->read_file("har_den"); break;
 			case (preg_match('/^har det(.*)/', $input) ? true : false): return $this->read_file("har_det"); break;
@@ -98,7 +97,7 @@ class Brain
 			case (preg_match('/^har jag(.*)/', $input) ? true : false): return $this->read_file("har_jag"); break;
 			case (preg_match('/^har vi(.*)/', $input) ? true : false): return $this->read_file("har_vi"); break;
 			case (preg_match('/^har (.*)/', $input) ? true : false): return $this->read_file("har"); break;
-			
+
 			//Kan
 			case (preg_match('/^kan den(.*)/', $input) ? true : false): return $this->read_file("kan_den"); break;
 			case (preg_match('/^kan det(.*)/', $input) ? true : false): return $this->read_file("kan_det"); break;
@@ -108,7 +107,7 @@ class Brain
 			case (preg_match('/^kan jag(.*)/', $input) ? true : false): return $this->read_file("kan_jag"); break;
 			case (preg_match('/^kan vi(.*)/', $input) ? true : false): return $this->read_file("kan_vi"); break;
 			case (preg_match('/^kan (.*)/', $input) ? true : false): return $this->read_file("kan"); break;
-			
+
 			//Vill
 			case (preg_match('/^vill den(.*)/', $input) ? true : false): return $this->read_file("vill_den"); break;
 			case (preg_match('/^vill det(.*)/', $input) ? true : false): return $this->read_file("vill_det"); break;
@@ -118,7 +117,7 @@ class Brain
 			case (preg_match('/^vill jag(.*)/', $input) ? true : false): return $this->read_file("vill_jag"); break;
 			case (preg_match('/^vill vi(.*)/', $input) ? true : false): return $this->read_file("vill_vi"); break;
 			case (preg_match('/^vill (.*)/', $input) ? true : false): return $this->read_file("vill"); break;
-			
+
 			//Visste
 			case (preg_match('/^visste den(.*)/', $input) ? true : false): return $this->read_file("visste_den"); break;
 			case (preg_match('/^visste det(.*)/', $input) ? true : false): return $this->read_file("visste_det"); break;
@@ -128,7 +127,7 @@ class Brain
 			case (preg_match('/^visste jag(.*)/', $input) ? true : false): return $this->read_file("visste_jag"); break;
 			case (preg_match('/^visste vi(.*)/', $input) ? true : false): return $this->read_file("visste_vi"); break;
 			case (preg_match('/^visste (.*)/', $input) ? true : false): return $this->read_file("visste"); break;
-			
+
 			//De
 			case (preg_match('/^(de|dom|dem) är(.*)/', $input) ? true : false): return $this->read_file("de_ar"); break;
 			case (preg_match('/^(de|dom|dem) får(.*)/', $input) ? true : false): return $this->read_file("de_far"); break;
@@ -137,7 +136,7 @@ class Brain
 			case (preg_match('/^(de|dom|dem) kommer(.*)/', $input) ? true : false): return $this->read_file("de_kommer"); break;
 			case (preg_match('/^(de|dom|dem) var(.*)/', $input) ? true : false): return $this->read_file("de_var"); break;
 			case (preg_match('/^(de|dom|dem) vill(.*)/', $input) ? true : false): return $this->read_file("de_vill"); break;
-			
+
 			//Den
 			case (preg_match('/^den är(.*)/', $input) ? true : false): return $this->read_file("den_ar"); break;
 			case (preg_match('/^den får(.*)/', $input) ? true : false): return $this->read_file("den_far"); break;
@@ -146,11 +145,11 @@ class Brain
 			case (preg_match('/^den kommer(.*)/', $input) ? true : false): return $this->read_file("den_kommer"); break;
 			case (preg_match('/^den var(.*)/', $input) ? true : false): return $this->read_file("den_var"); break;
 			case (preg_match('/^den vill(.*)/', $input) ? true : false): return $this->read_file("den_vill"); break;
-			
+
 			//Det
 			case (preg_match('/^det är bra(.*)/', $input) ? true : false): return $this->read_file("det_ar_bra"); break;
 			case (preg_match('/^det är du(.*)/', $input) ? true : false): return $this->read_file("det_ar_du"); break;
-			
+
 			case (preg_match('/^det är(.*)/', $input) ? true : false): return $this->read_file("det_ar"); break;
 			case (preg_match('/^det får(.*)/', $input) ? true : false): return $this->read_file("det_far"); break;
 			case (preg_match('/^det har(.*)/', $input) ? true : false): return $this->read_file("det_har"); break;
@@ -158,10 +157,10 @@ class Brain
 			case (preg_match('/^det kommer(.*)/', $input) ? true : false): return $this->read_file("det_kommer"); break;
 			case (preg_match('/^det var(.*)/', $input) ? true : false): return $this->read_file("det_var"); break;
 			case (preg_match('/^det vill(.*)/', $input) ? true : false): return $this->read_file("det_vill"); break;
-			
+
 			//Du
 			case (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
-			
+
 			case (preg_match('/^du är(.*)/', $input) ? true : false): return $this->read_file("du_ar"); break;
 			case (preg_match('/^du får(.*)/', $input) ? true : false): return $this->read_file("du_far"); break;
 			case (preg_match('/^du har(.*)/', $input) ? true : false): return $this->read_file("du_har"); break;
@@ -169,7 +168,7 @@ class Brain
 			case (preg_match('/^du kommer(.*)/', $input) ? true : false): return $this->read_file("du_kommer"); break;
 			case (preg_match('/^du var(.*)/', $input) ? true : false): return $this->read_file("du_var"); break;
 			case (preg_match('/^du vill(.*)/', $input) ? true : false): return $this->read_file("du_vill"); break;
-			
+
 			//Han
 			case (preg_match('/^han är(.*)/', $input) ? true : false): return $this->read_file("han_ar"); break;
 			case (preg_match('/^han får(.*)/', $input) ? true : false): return $this->read_file("han_far"); break;
@@ -178,7 +177,7 @@ class Brain
 			case (preg_match('/^han kommer(.*)/', $input) ? true : false): return $this->read_file("han_kommer"); break;
 			case (preg_match('/^han var(.*)/', $input) ? true : false): return $this->read_file("han_var"); break;
 			case (preg_match('/^han vill(.*)/', $input) ? true : false): return $this->read_file("han_vill"); break;
-			
+
 			//Hon
 			case (preg_match('/^hon är(.*)/', $input) ? true : false): return $this->read_file("hon_ar"); break;
 			case (preg_match('/^hon får(.*)/', $input) ? true : false): return $this->read_file("hon_far"); break;
@@ -187,7 +186,7 @@ class Brain
 			case (preg_match('/^hon kommer(.*)/', $input) ? true : false): return $this->read_file("hon_kommer"); break;
 			case (preg_match('/^hon var(.*)/', $input) ? true : false): return $this->read_file("hon_var"); break;
 			case (preg_match('/^hon vill(.*)/', $input) ? true : false): return $this->read_file("hon_vill"); break;
-			
+
 			//Jag
 			case (preg_match('/^jag är(.*)/', $input) ? true : false): return $this->read_file("jag_ar"); break;
 			case (preg_match('/^jag får(.*)/', $input) ? true : false): return $this->read_file("jag_far"); break;
@@ -196,12 +195,12 @@ class Brain
 			case (preg_match('/^jag kommer(.*)/', $input) ? true : false): return $this->read_file("jag_kommer"); break;
 			case (preg_match('/^jag var(.*)/', $input) ? true : false): return $this->read_file("jag_var"); break;
 			case (preg_match('/^jag vill(.*)/', $input) ? true : false): return $this->read_file("jag_vill"); break;
-			
+
 			case (preg_match('/^jag(.*)(älskar|kär|tycker om)(.*)dig/', $input) ? true : false): return $this->read_file("jag_alskar_dig"); break;
 			case (preg_match('/^jag(.*)(hatar|avskyr|ogillar)(.*)dig/', $input) ? true : false): return $this->read_file("jag_hatar_dig"); break;
 			case (preg_match('/^(.*)jag(.*)tillbaka(.*)/', $input) ? true : false): return $this->read_file("jag_tillbaka"); break;
 			case (preg_match('/^jag(.*)/', $input) ? true : false): return $this->read_file("jag"); break;
-			
+
 			//När
 			case (preg_match('/^när är(.*)/', $input) ? true : false): return $this->read_file("nar_ar"); break;
 			case (preg_match('/^när får(.*)/', $input) ? true : false): return $this->read_file("nar_far"); break;
@@ -213,14 +212,14 @@ class Brain
 
 			case (preg_match('/^när ska(.*)/', $input) ? true : false): return $this->read_file("nar_ska"); break;
 			case (preg_match('/^när (.*)/', $input) ? true : false): return $this->read_file("nar"); break;
-			
+
 			//Vad
 			case (preg_match('/^(vad|vem)(.*)är(.*)du/', $input) ? true : false): return $this->read_file("vad_ar_du"); break;
 			case (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)du/', $input) ? true : false): return $this->read_file("vad_heter_du"); break;
 			case (preg_match('/^vad(.*)kan(.*)du/', $input) ? true : false): return $this->read_file("vad_kan_du"); break;
 			case (preg_match('/^vad(.*)vet(.*)du/', $input) ? true : false): return $this->read_file("vad_vet_du"); break;
-			
+
 			case (preg_match('/^vad är(.*)/', $input) ? true : false): return $this->read_file("vad_ar"); break;
 			case (preg_match('/^vad får(.*)/', $input) ? true : false): return $this->read_file("vad_far"); break;
 			case (preg_match('/^vad har(.*)/', $input) ? true : false): return $this->read_file("vad_har"); break;
@@ -228,10 +227,10 @@ class Brain
 			case (preg_match('/^vad kommer(.*)/', $input) ? true : false): return $this->read_file("vad_kommer"); break;
 			case (preg_match('/^vad var(.*)/', $input) ? true : false): return $this->read_file("vad_var"); break;
 			case (preg_match('/^vad vill(.*)/', $input) ? true : false): return $this->read_file("vad_vill"); break;
-			
+
 			case (preg_match('/^vad ska(.*)/', $input) ? true : false): return $this->read_file("vad_ska"); break;
 			case (preg_match('/^vad (.*)/', $input) ? true : false): return $this->read_file("vad"); break;
-			
+
 			//Varför
 			case (preg_match('/^varför är(.*)/', $input) ? true : false): return $this->read_file("varfor_ar"); break;
 			case (preg_match('/^varför får(.*)/', $input) ? true : false): return $this->read_file("varfor_far"); break;
@@ -240,10 +239,10 @@ class Brain
 			case (preg_match('/^varför kommer(.*)/', $input) ? true : false): return $this->read_file("varfor_kommer"); break;
 			case (preg_match('/^varför var(.*)/', $input) ? true : false): return $this->read_file("varfor_var"); break;
 			case (preg_match('/^varför vill(.*)/', $input) ? true : false): return $this->read_file("varfor_vill"); break;
-			
+
 			case (preg_match('/^varför ska(.*)/', $input) ? true : false): return $this->read_file("varfor_ska"); break;
 			case (preg_match('/^varför (.*)/', $input) ? true : false): return $this->read_file("varfor"); break;
-			
+
 			//Var
 			case (preg_match('/^var(.*) är(.*)/', $input) ? true : false): return $this->read_file("var_ar"); break;
 			case (preg_match('/^var(.*) får(.*)/', $input) ? true : false): return $this->read_file("var_far"); break;
@@ -251,11 +250,11 @@ class Brain
 			case (preg_match('/^var(.*) kan(.*)/', $input) ? true : false): return $this->read_file("var_kan"); break;
 			case (preg_match('/^var(.*) kommer(.*)/', $input) ? true : false): return $this->read_file("var_kommer"); break;
 			case (preg_match('/^var(.*) vill(.*)/', $input) ? true : false): return $this->read_file("var_vill"); break;
-			
+
 			case (preg_match('/^var(.*) ska(.*)/', $input) ? true : false): return $this->read_file("var_ska"); break;
 			case (preg_match('/^var(.*)bor(.*)du(.*)/', $input) ? true : false): return $this->read_file("var_bor_du"); break;
 			case (preg_match('/^var(.*)/', $input) ? true : false): return $this->read_file("var"); break;
-			
+
 			//Vem
 			case (preg_match('/^vem är(.*)/', $input) ? true : false): return $this->read_file("vem_ar"); break;
 			case (preg_match('/^vem får(.*)/', $input) ? true : false): return $this->read_file("vem_far"); break;
@@ -263,10 +262,10 @@ class Brain
 			case (preg_match('/^vem kan(.*)/', $input) ? true : false): return $this->read_file("vem_kan"); break;
 			case (preg_match('/^vem kommer(.*)/', $input) ? true : false): return $this->read_file("vem_kommer"); break;
 			case (preg_match('/^vem vill(.*)/', $input) ? true : false): return $this->read_file("vem_vill"); break;
-			
+
 			case (preg_match('/^vem ska(.*)/', $input) ? true : false): return $this->read_file("vem_ska"); break;
 			case (preg_match('/^vem (.*)/', $input) ? true : false): return $this->read_file("vem"); break;
-			
+
 			//Vi
 			case (preg_match('/^vi är(.*)/', $input) ? true : false): return $this->read_file("vi_ar"); break;
 			case (preg_match('/^vi får(.*)/', $input) ? true : false): return $this->read_file("vi_far"); break;
@@ -274,16 +273,16 @@ class Brain
 			case (preg_match('/^vi kan(.*)/', $input) ? true : false): return $this->read_file("vi_kan"); break;
 			case (preg_match('/^vi kommer(.*)/', $input) ? true : false): return $this->read_file("vi_kommer"); break;
 			case (preg_match('/^vi vill(.*)/', $input) ? true : false): return $this->read_file("vi_vill"); break;
-			
+
 			case (preg_match('/^vi var(.*)/', $input) ? true : false): return $this->read_file("vi_var"); break;
-			
+
 			//Hur
 			case (preg_match('/^hur gammal(.*)du(.*)/', $input) ? true : false): return $this->read_file("hur_gammal_du"); break;
 			case (preg_match('/^hur kan(.*)/', $input) ? true : false): return $this->read_file("hur_kan"); break;
 			case (preg_match('/^hur var(.*)/', $input) ? true : false): return $this->read_file("hur_var"); break;
 			case (preg_match('/^hur vill(.*)/', $input) ? true : false): return $this->read_file("hur_vill"); break;
 			case (preg_match('/^hur(.*)/', $input) ? true : false): return $this->read_file("hur"); break;
-			
+
 			case (preg_match('/^(\:\)|\:\(|\:o|\:d)/', $input) ? true : false): return $this->read_file("smiley"); break;
 			case (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input) ? true : false): return $this->read_file("ja"); break;
 			case (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input) ? true : false): return $this->read_file("jo"); break;
@@ -292,11 +291,11 @@ class Brain
 			default: return $this->read_file("default_answer"); break;
 		}
 	}
-	
+
 	public function read_file($file)
 	{
 		$text_file = BASEPATH . '../assets/text/answers/' . $file . '.txt';
-		
+
 		if (file_exists($text_file))
 		{
 			$handle = fopen($text_file, "r");
@@ -304,7 +303,7 @@ class Brain
 			fclose($handle);
 			$contents = explode("\n", $contents);
 			$row = $contents[rand(0, count($contents) - 1)];
-			
+
 			$output = array('answer' => $row, 'answer_id' => $file);
 			return $output;
 		}
@@ -314,90 +313,35 @@ class Brain
 			return $output;
 		}
 	}
-	
-	public function read_wikipedia()
-	{
-		$url = "https://sv.wikipedia.org/wiki/Special:Slumpsida";
-		
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_USERAGENT, "Sarabot 2.0");
-		curl_setopt($ch, CURLOPT_HEADER, TRUE);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, FALSE);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		$redirect_content = curl_exec($ch);
-		$redirect_url = preg_match("/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $redirect_content, $matches);
-		$redirect_url = $matches[0];
-		
-		$options = array(
-			CURLOPT_RETURNTRANSFER => true,     // return web page
-			CURLOPT_HEADER         => false,    // don't return headers
-			CURLOPT_FOLLOWLOCATION => false,     // follow redirects
-			CURLOPT_ENCODING       => "UTF-8",       // handle all encodings
-			CURLOPT_USERAGENT      => "Sarabot 2.0", // who am i
-			CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-			CURLOPT_CONNECTTIMEOUT => 8,      // timeout on connect
-			CURLOPT_TIMEOUT        => 10,      // timeout on response
-			CURLOPT_MAXREDIRS      => 1       // stop after 2 redirects
-		);
-	
-		$ch = curl_init($redirect_url);
-		curl_setopt_array($ch, $options);
-		$contents = curl_exec($ch);
-		curl_close($ch);
-		
-		$contents = explode(". ", $contents);
-		$contents = $contents[rand(0, count($contents) - 1)];
-		$contents = strip_tags($contents);
-		$output = array('answer' => $contents, 'answer_id' => 'Wikipedia');
-		return $output;
-	}
-	
-	public function read_ne($word)
-	{
-		$url = "http://www.ne.se/sok?q=" . $word;
-		
-		$options = array(
-			CURLOPT_RETURNTRANSFER => true,     // return web page
-			CURLOPT_HEADER         => false,    // don't return headers
-			CURLOPT_FOLLOWLOCATION => false,     // follow redirects
-			CURLOPT_ENCODING       => "UTF-8",       // handle all encodings
-			CURLOPT_USERAGENT      => "Sarabot 2.0", // who am i
-			CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-			CURLOPT_CONNECTTIMEOUT => 8,      // timeout on connect
-			CURLOPT_TIMEOUT        => 10,      // timeout on response
-			CURLOPT_MAXREDIRS      => 1       // stop after 2 redirects
-		);
-	
-		$ch = curl_init($url);
-		curl_setopt_array($ch, $options);
-		$contents = curl_exec($ch);
-		curl_close($ch);
-		
-		$contents = explode('<span class="ENC">', $contents);
-		$contents = strip_tags($contents[1]);
-		$contents = explode(".", $contents);
-		$contents = ucfirst(trim($contents[0])) . '.';
 
-		$output = array('answer' => $contents, 'answer_id' => 'Nationalencyklopedin: ' . $word);
+	public function read_wikipedia($word)
+	{
+		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" . $word;
+
+		$json = file_get_contents($url);
+		$obj = json_decode($json);
+		$article = (Array)$obj->query->pages;
+		$extract = reset($article)->extract;
+
+		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
 		return $output;
 	}
-	
+
 	public function get_time()
 	{
 		return array('answer' => "Klockan är " . date("H.i") . ".", 'answer_id' => 'Clock');
 	}
-	
+
 	public function get_date()
 	{
 		return array('answer' => "Idag är det den " . date("Y-m-j") . ".", 'answer_id' => 'Date');
 	}
-	
+
 	public function get_week()
 	{
 		return array('answer' => "Idag är det vecka " . date("W") . ".", 'answer_id' => 'Week');
 	}
-	
+
 	public function remember_name($input)
 	{
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
@@ -412,17 +356,17 @@ class Brain
 			preg_match_all('/[\wåäöÅÄÖ]+/', $input, $array);
 			$name = ucfirst(strtolower($array[0][2]));
 		}
-		
+
 		$this->CI->session->set_userdata('name', $name);
 		$this->CI->session->set_userdata('ask_for_name', 'false');
-		
+
 		return array('answer' => 'Trevligt att råkas, ' . $name . '. :)', 'answer_id' => 'Remember name');
 	}
-	
+
 	public function get_calc($input)
 	{
 		preg_match_all('/[0-9\+\-\*\/]+/', $input, $array);
-	
+
 		switch ($array[0][1])
 		{
 			case "+":
@@ -443,7 +387,7 @@ class Brain
 
 		return array('answer' => $result, 'answer_id' => 'Calculator');
 	}
-	
+
 }
 
 /* End of file Brain.php */
