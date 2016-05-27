@@ -301,7 +301,7 @@ class Brain
 		}
 	}
 
-	public function read_file($file)
+	public function read_file($file, $replacement = "")
 	{
 		$text_file = BASEPATH . '../assets/text/answers/' . $file . '.txt';
 
@@ -312,6 +312,7 @@ class Brain
 			fclose($handle);
 			$contents = explode("\n", $contents);
 			$row = $contents[rand(0, count($contents) - 1)];
+			$row = str_replace("{0}", $replacement, $row);
 
 			$output = array('answer' => $row, 'answer_id' => $file);
 			return $output;
@@ -348,16 +349,14 @@ class Brain
 
 	public function get_week()
 	{
-		return array('answer' => "Idag är det vecka " . date("W") . ".", 'answer_id' => 'Week');
+		$output = $this->read_file("vad_vecka", date("W"));
+		return $output;
 	}
 
 	public function remember_name($input)
 	{
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
-			$name = str_replace("jag heter", "", $input);
-			$name = str_replace("heter jag", "", $name);
-			$name = str_replace(".", "", $name);
 			$name = ucfirst(strtolower($name));
 		}
 		else
