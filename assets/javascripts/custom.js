@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$("input[type='text']:first", document.forms[0]).focus();
 });
 
-$(document).on('submit', 'form#dialog_form', function() {
+$(document).on('submit', '#dialog_form', function() {
 	if ($("input#input_field").val().length > 1) {
 		$.ajax({
 			type: "POST",
@@ -28,7 +28,7 @@ $(document).on('submit', 'form#dialog_form', function() {
 
 				inputHistory[inputHistory.length] = answer['said'];
 				$("input#input_field").val("");
-				
+
 				historyIndex = inputHistory.length;
 				answerID++;
 			},
