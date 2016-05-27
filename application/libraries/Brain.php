@@ -227,6 +227,7 @@ class Brain
 			case (preg_match('/^(vad|vem)(.*)är(.*)du/', $input) ? true : false): return $this->read_file("vad_ar_du"); break;
 			case (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)du/', $input) ? true : false): return $this->read_file("vad_heter_du"); break;
+			case (preg_match('/^vad(.*)heter(.*)/', $input) ? true : false): return $this->read_file("vad_heter"); break;
 			case (preg_match('/^vad(.*)kan(.*)du/', $input) ? true : false): return $this->read_file("vad_kan_du"); break;
 			case (preg_match('/^vad(.*)vet(.*)du/', $input) ? true : false): return $this->read_file("vad_vet_du"); break;
 
