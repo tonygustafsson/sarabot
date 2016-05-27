@@ -10,7 +10,7 @@
 	som får henne att verka rätt smart och mänsklig. Hon kan även kolla in nationalencyklopedin, svara på mattefrågor, kan tid och datum, samt komma ihåg ditt namn.</p>
 </section>
 
-<a href="<?=base_url()?>" title="Gå till startsidan"><img src="<?=base_url()?>assets/images/bot.jpg" alt="Sarabot"></a>
+<a href="<?php echo base_url()?>" title="Gå till startsidan"><img src="<?php echo base_url()?>assets/images/bot.jpg" alt="Sarabot"></a>
 
 <form method="post" id="dialog_form" action="<?=base_url()?>bot/speak" style="width: 100%; float: left; clear: both;">
 	<input id="input_field" type="text" name="input">
@@ -19,7 +19,7 @@
 </form>
 
 <div id="dialog">
-	<? if ($this->session->userdata('ask_for_name') == "true"): ?>
-		<p>&#60;<?echo date("H:i:s")?>&#62; Sarabot: Hej! Vad heter du?</p>
-	<? endif; ?>
+	<?php if ($this->session->userdata('ask_for_name') == "true"): ?>
+		<p>&#60;<?php echo date("H:i:s")?>&#62; Sarabot: Hej! Vad heter du?</p>
+	<?php endif; ?>
 </div>
