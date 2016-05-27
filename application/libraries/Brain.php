@@ -15,9 +15,14 @@ class Brain
 
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
+			$words = str_replace("?", "", $input);
+			$words = str_replace("!", "", $words);
+			$words = str_replace(",", "", $words);
+			$words = str_replace(".", "", $words);
 			$words = str_replace("jag heter ", "", $input);
 			$words = str_replace("mitt namn är ", "", $words);
 			$words = str_replace("namnet är ", "", $words);
+			$words = str_replace("hej", "", $words);
 			
 			return $this->remember_name($words);
 		}
