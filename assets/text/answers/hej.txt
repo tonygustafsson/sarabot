@@ -1,6 +1,9 @@
 Hej!
-Hejsan #name#!
-Hallå du!! =)
+Hejsan!
+Hallå du! :)
+Hej!
+Hej!
+Hejsan!
 Hej, kul att se dig.
 Tjaba!
 Tja!
@@ -8,6 +11,6 @@ Hej hopp i lingonskogen!
 Yo! ;)
 Väl mött #name#!
 Hej på dig du!
-Halloj! =)
-#name# =)
+Halloj! :)
+Tjofadderittan.
 Tjenare!

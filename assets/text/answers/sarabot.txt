@@ -1,7 +1,8 @@
-Ja, #name#?
+Ja, kompis?
 Vad?
 Va ere?
 Vad är det?
 Mmm...
 Hade du något att säga eller? =)
-#name#
+Mhm?
+Japp?
