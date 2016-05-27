@@ -1,8 +1,0 @@
-<22:07:39> <User> Hej, mitt namn är Thomas. Vad är ditt?
-<22:07:39> <Sarabot> Trevligt att råkas, Hej,. :) (Remember name)
-<22:08:03> <User> Vad är ditt namn?
-<22:08:03> <Sarabot> Det kan du vara själv, ditt as3 :P (ditt)
-<22:08:22> <User> Jasså, heter du as?
-<22:08:22> <Sarabot> OK. (ja)
-<22:08:58> <User> Hur stor är Timrå kommun i antal invånare
-<22:08:58> <Sarabot> Jag vet inte hur. (hur)
