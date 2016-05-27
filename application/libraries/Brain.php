@@ -303,7 +303,7 @@ class Brain
 			
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
 			
-			default: return rand(1,4) == 1 ? $this->read_file("default_answer") : $this->get_random_wikipedia_article(); break;
+			default: return rand(1,4) == 1 ? $this->get_random_wikipedia_article() : $this->read_file("default_answer"); break;
 		}
 	}
 

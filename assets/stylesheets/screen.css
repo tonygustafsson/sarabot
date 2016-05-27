@@ -95,3 +95,32 @@ footer p a {
 	text-decoration: none;
 	margin-right: 1.5em;
 }
+
+@media screen and (max-width: 960px) {
+	#main {
+		width: 100%;
+		margin: 0;
+	}
+	
+	.bot-img {
+		max-width: 100%;
+	}
+	
+	#main form input[type=text] {
+		width: 100%;
+		box-sizing: border-box;
+		margin-bottom: .5em;
+	}
+	
+	#main h1 a {
+		padding-top: .5em;
+	}
+	
+	#main p {
+		padding: 0;
+	}
+	
+	footer {
+		display: none;
+	}
+}
