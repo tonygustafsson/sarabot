@@ -166,6 +166,7 @@ class Brain
 			case (preg_match('/^det kommer(.*)/', $input) ? true : false): return $this->read_file("det_kommer"); break;
 			case (preg_match('/^det var(.*)/', $input) ? true : false): return $this->read_file("det_var"); break;
 			case (preg_match('/^det vill(.*)/', $input) ? true : false): return $this->read_file("det_vill"); break;
+			case (preg_match('/^(det samma|det samma)(.*)/', $input) ? true : false): return $this->read_file("det_samma"); break;
 
 			//Du
 			case (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
@@ -296,7 +297,9 @@ class Brain
 			case (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input) ? true : false): return $this->read_file("ja"); break;
 			case (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input) ? true : false): return $this->read_file("jo"); break;
 			case (preg_match('/^(nej|nope|nje|no|nejdå|nepp)(.*)/', $input) ? true : false): return $this->read_file("nej"); break;
+			
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
+			
 			default: return $this->read_file("default_answer"); break;
 		}
 	}
