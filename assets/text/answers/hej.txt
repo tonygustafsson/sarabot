@@ -9,7 +9,7 @@ Tjaba!
 Tja!
 Hej hopp i lingonskogen!
 Yo! ;)
-Väl mött #name#!
+Väl mött {name}!
 Hej på dig du!
 Halloj! :)
 Tjofadderittan.

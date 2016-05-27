@@ -27,7 +27,7 @@ class Bot extends CI_Controller {
 
 			$input = strtolower(strtr($this->input->post('input'), "ÅÄÖ", "åäö"));
 			$answer = $this->brain->get_answer($input);
-			$answer['answer'] = str_replace("#name#", $name, $answer['answer']);
+			$answer['answer'] = str_replace("{name}", $name, $answer['answer']);
 
 			$this->benchmark->mark('after_answer');
 			$benchmark = $this->benchmark->elapsed_time('before_answer', 'after_answer');

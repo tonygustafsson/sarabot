@@ -24,9 +24,10 @@ Jag blir så less på alla idioter...
 När jag blir stor ska jag ta över världen. Vad har du för planer?
 Vad ska vi göra?
 Ska vi prata om nåt?
+Men {name} :D
 Asså...
 Ska vi gå ut och ta oss en öl? IPA e nice.
-Är du trött?
+Är du trött {name}?
 Är du hungrig?
 Tröttnat på mig?
 Ärligt talat, duscha!!
