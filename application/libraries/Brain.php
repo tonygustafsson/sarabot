@@ -379,7 +379,7 @@ class Brain
 	{
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
-			$name = ucfirst(strtolower($name));
+			$name = ucfirst(strtolower($input));
 		}
 		else
 		{
@@ -395,7 +395,8 @@ class Brain
 	
 	public function get_name()
 	{
-		return array('answer' => $this->CI->session->userdata('name'), 'answer_id' => 'Get name');
+		$output = $this->read_file("vad_heter_jag", $this->CI->session->userdata('name'));
+		return $output;
 	}
 
 	public function get_calc($input)
