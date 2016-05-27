@@ -339,12 +339,14 @@ class Brain
 
 	public function get_time()
 	{
-		return array('answer' => "Klockan är " . date("H.i") . ".", 'answer_id' => 'Clock');
+		$output = $this->read_file("vad_klockan", date("H.i"));
+		return $output;
 	}
 
 	public function get_date()
 	{
-		return array('answer' => "Idag är det den " . date("Y-m-j") . ".", 'answer_id' => 'Date');
+		$output = $this->read_file("vad_datum", date("Y-m-j"));
+		return $output;
 	}
 
 	public function get_week()
