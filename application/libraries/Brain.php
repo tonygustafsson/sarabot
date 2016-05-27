@@ -303,7 +303,7 @@ class Brain
 			
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
 			
-			default: return $this->read_file("default_answer"); break;
+			default: return rand(1,4) == 1 ? $this->read_file("default_answer") : $this->get_random_wikipedia_article(); break;
 		}
 	}
 
@@ -332,7 +332,7 @@ class Brain
 
 	public function read_wikipedia($word)
 	{
-		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" . $word;
+		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&exchars=200&titles=" . $word;
 
 		$json = file_get_contents($url);
 		$obj = json_decode($json);
@@ -340,6 +340,20 @@ class Brain
 		$extract = reset($article)->extract;
 
 		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
+		return $output;
+	}
+
+	public function get_random_wikipedia_article()
+	{
+		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&generator=random&exchars=200";
+		
+		$json = file_get_contents($url);
+		$obj = json_decode($json);
+		$article = (Array)$obj->query->pages;
+		$extract = reset($article)->extract;
+		$extract = strip_tags($extract);
+		
+		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: RANDOM');
 		return $output;
 	}
 
