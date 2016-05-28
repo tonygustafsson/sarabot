@@ -303,7 +303,14 @@ class Brain
 			
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
 			
-			default: return rand(1,4) == 1 ? $this->get_random_wikipedia_article() : $this->read_file("default_answer"); break;
+			default:
+				$random = rand(1,6);
+				if ($random == 1) $answer = $this->send_image("cat");
+				else if ($random == 2) $answer = $this->get_random_wikipedia_article();
+				else $answer = $this->read_file("default_answer");
+				
+				return $answer;
+				break;
 		}
 	}
 
@@ -328,6 +335,14 @@ class Brain
 			$output = array('answer' => "Error: Could not find file!", 'file' => "Error!");
 			return $output;
 		}
+	}
+
+	public function send_image($motive)
+	{
+		$answer = $this->read_file("bild_katt")['answer'];
+		$answer .= '<br><img src="http://loremflickr.com/200/200" height="200" width="200">';
+		$output = array('answer' => $answer, 'answer_id' => 'Image: ' . $motive);
+		return $output;
 	}
 
 	public function read_wikipedia($word)
