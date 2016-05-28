@@ -357,9 +357,22 @@ class Brain
 		$json = file_get_contents($url);
 		$obj = json_decode($json);
 		$article = (Array)$obj->query->pages;
-		$extract = reset($article)->extract;
+		
+		if (count($article) == 0)
+			return $this->read_file("default_answer");
+			
+		$article = reset($article);
+		
+		if (!isset($article->extract))
+			return $this->read_file("default_answer");
+		
+		$extract = $article->extract;
+
+		if (empty(str_replace(".", "", $extract)))
+			return $this->read_file("default_answer");
 
 		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
+		
 		return $output;
 	}
 
