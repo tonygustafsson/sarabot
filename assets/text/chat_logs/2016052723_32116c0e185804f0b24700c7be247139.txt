@@ -1,0 +1,10 @@
+<23:34:39> <User> gösta
+<23:34:39> <Sarabot> Trevligt att råkas, Gösta. :) (Remember name)
+<23:35:10> <User> vad heter du?
+<23:35:10> <Sarabot> Sara heter jag! =) (vad_heter_du)
+<23:35:28> <User> vad heter du i efternamn?
+<23:35:28> <Sarabot> Mitt namn är Sara, själv? (vad_heter_du)
+<23:35:40> <User> gösta
+<23:35:40> <Sarabot> Tröttnat på mig? (default_answer)
+<23:35:52> <User> ja, lite
+<23:35:52> <Sarabot> Jahopp. (ja)

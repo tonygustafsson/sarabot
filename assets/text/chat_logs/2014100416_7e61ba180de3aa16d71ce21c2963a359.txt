@@ -1,4 +1,0 @@
-<16:34:57> <User> Tony
-<16:34:57> <Sarabot> Trevligt att råkas, Tony. :) (Remember name)
-<16:35:00> <User> Det samma!
-<16:35:00> <Sarabot> Jag vet inte vad du talar om just nu. (default_answer)
