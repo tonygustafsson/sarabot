@@ -1,0 +1,5 @@
+Nu är det vecka {0}.
+{0} just nu.
+Just nu? V{0} tror jag bestämt.
+Veckonummer? Jävla svennebanan. v{0} är det.
+Kolla vecka.nu? Den säger nog v{0}...

@@ -1,0 +1,7 @@
+Du heter {0}?
+Du heter {0}!
+{0}
+Tror du inte jag minns dig, {0}?
+{0} :)
+Ditt namn är {0}.
+{0} minsann.

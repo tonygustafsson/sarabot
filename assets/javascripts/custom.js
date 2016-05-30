@@ -8,6 +8,8 @@ $(document).ready(function() {
 
 $(document).on('submit', '#dialog_form', function() {
 	if ($("input#input_field").val().length > 1) {
+		$('.bot-img').addClass('thinking');
+		
 		$.ajax({
 			type: "POST",
 			url: $(this).attr('action'),
@@ -21,6 +23,8 @@ $(document).on('submit', '#dialog_form', function() {
 				$("input#input_field").val("");
 				$("input#input_field").attr('disabled', false);
 				$("input#input_field").focus();
+				
+				$('.bot-img').removeClass('thinking');
 			},
 			success: function(answer) {
 				$("<p id='" + answerID + "'><span class='greyed'>&#60;" + answer['timestamp'] + "&#62; Du: " + answer['said'] + "</span><br>&#60;" + answer['timestamp'] + "&#62; Sarabot: " + answer['answer'] + "</p>").hide().prependTo("div#dialog").fadeIn();

@@ -1,4 +1,5 @@
-Det är den $date(dd) $+ / $+ $date(mm) $+ - $+ $date(yyyy)
-Den $date(dd) $+ e i $date(mm) $+ e.
-$date(yyyy-mm-dd)
-Strunt samma, alla dagar är lika innehållslösa för mig.
+Det är den {0}.
+{0}
+Idag är det den {0}.
+{0} minsann.
+Idag? {0}.

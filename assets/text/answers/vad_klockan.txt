@@ -1,8 +1,7 @@
-Klockan är $time $+ .
+Klockan är {0}.
 Klockan är en uppfinning.
-Haha, vet du inte vad klockan är din lodis?
-$time den $date(yyyy-mm-dd)
+Haha, vet du inte vad klockan är din pappskalle? {0}
+{0}
 Tid är människans påfund. Inget att bry sig om... :)
-$time
-$time
-$time $+ , den $date(yyyy-mm-dd) för att vara exakt.
+{0}
+Nuet är nu. {0} typ.
