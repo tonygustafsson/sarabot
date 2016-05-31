@@ -1,0 +1,42 @@
+<17:40:08> <User> Hej. Jag heter Joel.
+<17:40:08> <Sarabot> Trevligt att råkas, Hej. :) (Remember name)
+
+<17:40:31> <User> Hur gammal är du?
+<17:40:31> <Sarabot> Jag har inte blivit omhändertagen så mycket :( Men jag har funnits i flera år. (hur_gammal_du)
+
+<17:40:54> <User> Vad heter din skapare?
+<17:40:54> <Sarabot> Det kan du vara själv du! (din)
+
+<17:41:51> <User> Vad trevligt. Det är jag också.
+<17:41:51> <Sarabot> Ja du, ingen aning =( (vad)
+
+<21:34:02> <User> Är din pojkvän en bot också?
+<21:34:02> <Sarabot> Det kan du vara själv du! (din)
+
+<21:34:24> <User> Har du känslor?
+<21:34:24> <Sarabot> Nej det har jag ju inte. (har_du)
+
+<17:20:38> <User> Inte intresserad?
+<17:20:38> <Sarabot> Ja. (question)
+
+<17:21:39> <User> Vilken är din favoritlåt med Metallica?
+<17:21:39> <Sarabot> Är jag det? Njaa... (din)
+
+<17:22:00> <User> Cool
+<17:22:00> <Sarabot> Hm, det är kul att prata med dig. (default_answer)
+
+<16:42:03> <User> Detsamma!
+<16:42:03> <Sarabot> Det har du förbaskat rätt i faktist :) (default_answer)
+
+<16:44:14> <Sarabot>
+Utbredningsområde - översättning behövs
+
+Artens utbredningsområde anges på engelska i Catalogue... (Wikipedia: RANDOM)
+
+<16:44:54> <User> Vad?
+<16:44:54> <Sarabot> Nej. :) (question)
+
+<23:32:01> <User> herre gud
+<23:32:01> <Sarabot>
+Nesaphrogeneia vitiensis är en insektsart som beskrevs av George Willis Kirkaldy 1907. Nesaphrogeneia vitiensis ingår i släktet Nesaphrogeneia och familjen spottstritar... (Wikipedia: RANDOM)
+
