@@ -17,12 +17,12 @@ img {
 	text-align: center;
 }
 
-#main h1 {
+h1 {
 	text-align: center;
 	letter-spacing: 2px;
 }
 
-#main h1 a {
+h1 a {
 	display: block;
 	padding: 1em 0;
 	font-size: 200%;
@@ -39,12 +39,15 @@ img {
 	opacity: .9;
 }
 
-#main form {
+.dialog-form {
 	display: block;
 	padding: 1em 0;
+	width: 100%;
+	float: left;
+	clear: both;
 }
 
-#main form input[type=text] {
+input[type=text] {
 	width: 400px;
 	height: 30px;
 	font-family: 'Lucida grande', Helvetica, sans-serif;
@@ -52,7 +55,7 @@ img {
 	padding: 0 0.5em;
 }
 
-#main form input[type=submit], section#main form input[type=button] {
+input[type=submit], input[type=button] {
 	width: 100px;
 	height: 38px;
 	font-family: 'Lucida grande', Helvetica, sans-serif;
@@ -60,22 +63,22 @@ img {
 	cursor: pointer;
 }
 
-#main p {
+p {
 	font-family: 'Roboto Slab', serif;
 	font-size: 120%;
 	text-align: left;
 	padding: 0 20%;
 }
 
-#main span.greyed {
+.greyed {
 	color: #888;
 }
 
-#dialog {
+.dialog {
 	margin-bottom: 5em;
 }
 
-#dialog img {
+.dialog img {
 	padding: .5em;
 	max-width: 100%;	
 }
@@ -92,6 +95,8 @@ footer {
 
 footer p {
 	text-align: right;
+	padding: 0;
+	font-size: 80%;
 }
 
 footer p a {
@@ -111,17 +116,17 @@ footer p a {
 		max-width: 100%;
 	}
 	
-	#main form input[type=text] {
+	input[type=text] {
 		width: 100%;
 		box-sizing: border-box;
 		margin-bottom: .5em;
 	}
 	
-	#main h1 a {
+	h1 a {
 		padding-top: .5em;
 	}
 	
-	#main p {
+	p {
 		padding: 0;
 	}
 	

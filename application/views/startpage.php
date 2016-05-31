@@ -14,13 +14,13 @@
 	<img src="<?php echo base_url()?>assets/images/bot.jpg" class="bot-img" alt="Sarabot">
 </a>
 
-<form method="post" id="dialog_form" action="<?=base_url()?>bot/speak" style="width: 100%; float: left; clear: both;">
-	<input id="input_field" type="text" name="input">
-	<input type="submit" value="Säg">
-	<input type="button" value="Rensa" id="clean">
+<form method="post" id="dialog_form" class="dialog-form" action="<?=base_url()?>bot/speak">
+	<input id="input_field" class="input-field" type="text" name="input">
+	<input type="submit" value="Säg" class="btn-submit">
+	<input type="button" value="Rensa" class="btn-clear" id="clear">
 </form>
 
-<div id="dialog">
+<div id="dialog" class="dialog">
 	<?php if ($this->session->userdata('ask_for_name') == "true"): ?>
 		<p>&#60;<?php echo date("H:i:s")?>&#62; Sarabot: Hej! Vad heter du?</p>
 	<?php endif; ?>
