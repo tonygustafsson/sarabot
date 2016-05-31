@@ -4,7 +4,10 @@ class Brain
 {
 	public function __construct()
 	{
+		session_start();
+		
 		$this->CI =& get_instance();
+		$this->input = "";
 	}
 
 	public function get_answer($input)
@@ -24,6 +27,8 @@ class Brain
 			
 			return $this->remember_name($words[$position]);
 		}
+
+		$this->input = $input;
 
 		switch($input)
 		{
@@ -309,9 +314,10 @@ class Brain
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
 			
 			default:
-				$random = rand(1,6);
+				$random = rand(1,8);
 				if ($random == 1) $answer = $this->send_image("cat");
-				else if ($random == 2) $answer = $this->get_random_wikipedia_article();
+				else if ($random == 2) $answer = $this->get_talked_about();
+				else if ($random == 3) $answer = $this->get_random_wikipedia_article();
 				else $answer = $this->read_file("default_answer");
 				
 				return $answer;
@@ -332,6 +338,8 @@ class Brain
 			$row = $contents[rand(0, count($contents) - 1)];
 			$row = str_replace("{0}", $replacement, $row);
 
+			$this->save_unusual_words($this->input);
+
 			$output = array('answer' => $row, 'answer_id' => $file);
 			return $output;
 		}
@@ -341,7 +349,52 @@ class Brain
 			return $output;
 		}
 	}
+	
+	public function get_talked_about()
+	{
+		$word = "kebab";
+		
+		if (count($_SESSION['unusual_words']) > 0)
+		{
+			shuffle($_SESSION['unusual_words']);
+			$word = array_slice($_SESSION['unusual_words'], 0, 1);
+			$word = $word[0];
+		}
+			
+		$answer = $this->read_file("du_namnde", $word);
+		
+		return array('answer' => $answer['answer'], 'answer_id' => 'Talked about');
+	}
+	
+	public function save_unusual_words($words)
+	{
+		$text_file = BASEPATH . '../assets/text/lists/usual_words.txt';
+		
+		$handle = fopen($text_file, "r");
+		$contents = fread($handle, filesize($text_file));
+		fclose($handle);
+		
+		$usual_words = explode("\n", $contents);
+		$words = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $words);
+		$words = strtolower($words);
+		$word_array = explode(" ", $words);
+		
+		$new_words = "";
+		
+		if (!isset($_SESSION['unusual_words']))
+		{
+			$_SESSION['unusual_words'] = array();
+		}
 
+		foreach ($word_array as $word)
+		{
+			if (!in_array($word, $_SESSION['unusual_words']) && !in_array($word, $usual_words))
+			{
+				$_SESSION['unusual_words'][] = strtolower($word);
+			}
+		}
+	}
+	
 	public function send_image($motive)
 	{
 		$answer = $this->read_file("bild_katt")['answer'];

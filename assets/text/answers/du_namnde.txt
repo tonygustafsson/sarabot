@@ -1,0 +1,9 @@
+Du nämnde något om {0} tidigare, kan du utveckla det lite?
+{0} sa du... Vad mer vet du om den saken?
+Om jag kallar dig för {0}, blir du arg då?
+Vet du vad du är? Du är {0}...
+Jag är lite osäker på det här, men är du {0}?
+Äger du en {0}?
+Är jag en {0}?
+Kan du berätta lite mer om {0}, {name}?
+Men du, {name}... vad tycker du om {0}?
