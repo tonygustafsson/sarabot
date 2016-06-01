@@ -11,6 +11,8 @@ class Brain
 
 	public function get_answer($input)
 	{
+		$is_question = strpos($input, "?") !== FALSE;
+		$raw_input = $input;
 		$input = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $input);
 		$words = explode(" ", $input);
 
@@ -28,7 +30,7 @@ class Brain
 			//Special
 			case (preg_match('/^jag heter (.*)/', $input) ? true : false): return $this->remember_name($input); break;
 
-			case (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $input) ? true : false): return $this->get_calc($input); break;
+			case (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input) ? true : false): return $this->get_calc($raw_input); break;
 
 			case (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input) ? true : false): return $this->get_date(); break;
 			case (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input) ? true : false): return $this->get_week(); break;
@@ -42,6 +44,7 @@ class Brain
 			case (preg_match('/^(.*)(god|trevlig)(.*)(natt|kväll)/', $input) ? true : false): return $this->read_file("god_natt"); break;
 			case (preg_match('/^(.*)asl(.*)/', $input) ? true : false): return $this->read_file("asl"); break;
 			case (preg_match('/^(.*)cybersex(.*)/', $input) ? true : false): return $this->read_file("cybersex"); break;
+			case (preg_match('/^(.*)(herregud|herre gud|omg|oh my god|shit)(.*)/', $input) ? true : false): return $this->read_file("herre_gud"); break;
 			case (preg_match('/^(.*)(du|din)(.*)bitch(.*)/', $input) ? true : false): return $this->read_file("du_bitch"); break;
 			case (preg_match('/^(.*)(hatar|ogillar)(.*)du(.*)/', $input) ? true : false): return $this->read_file("hatar_du"); break;
 			case (preg_match('/^(.*)(du|din|ditt)(.*)duktig(.*)/', $input) ? true : false): return $this->read_file("du_duktig"); break;
@@ -72,9 +75,6 @@ class Brain
 			case (preg_match('/^(kul|lustigt|roligt|haha)(.*)/', $input) ? true : false): return $this->read_file("kul"); break;
 			case (preg_match('/^(tråkigt|trist|uselt|kass)(.*)/', $input) ? true : false): return $this->read_file("trakigt"); break;
 
-			case (preg_match('/^(.*)din(.*)/', $input) ? true : false): return $this->read_file("din"); break;
-			case (preg_match('/^(.*)ditt(.*)/', $input) ? true : false): return $this->read_file("ditt"); break;
-
 			//Ska
 			case (preg_match('/^(.*)ska(.*)du(.*)(göra|hitta på)/', $input) ? true : false): return $this->read_file("ska_du_gora"); break;
 			case (preg_match('/^(.*)ska(.*)vi(.*)(pussas|kyssas|hångla|smeka)/', $input) ? true : false): return $this->read_file("ska_vi_hangla"); break;
@@ -97,6 +97,7 @@ class Brain
 			//Har
 			case (preg_match('/^har den(.*)/', $input) ? true : false): return $this->read_file("har_den"); break;
 			case (preg_match('/^har det(.*)/', $input) ? true : false): return $this->read_file("har_det"); break;
+			case (preg_match('/^har(.*)du(.*)känslor/', $input) ? true : false): return $this->read_file("du_kanslor"); break;
 			case (preg_match('/^har du(.*)/', $input) ? true : false): return $this->read_file("har_du"); break;
 			case (preg_match('/^har han(.*)/', $input) ? true : false): return $this->read_file("har_han"); break;
 			case (preg_match('/^har hon(.*)/', $input) ? true : false): return $this->read_file("har_hon"); break;
@@ -123,6 +124,10 @@ class Brain
 			case (preg_match('/^vill jag(.*)/', $input) ? true : false): return $this->read_file("vill_jag"); break;
 			case (preg_match('/^vill vi(.*)/', $input) ? true : false): return $this->read_file("vill_vi"); break;
 			case (preg_match('/^vill (.*)/', $input) ? true : false): return $this->read_file("vill"); break;
+
+			//Vilken
+			case (preg_match('/^vilken(.*)är(.*)din/', $input) ? true : false): return $this->read_file("vilken_ar_din"); break;
+			case (preg_match('/^vilken/', $input) ? true : false): return $this->read_file("vilken"); break;
 
 			//Visste
 			case (preg_match('/^visste den(.*)/', $input) ? true : false): return $this->read_file("visste_den"); break;
@@ -154,6 +159,7 @@ class Brain
 
 			//Det
 			case (preg_match('/^det är bra(.*)/', $input) ? true : false): return $this->read_file("det_ar_bra"); break;
+			case (preg_match('/^(cool|coolt|grymt|fett|nice|awesome|vad bra)(.*)/', $input) ? true : false): return $this->read_file("det_ar_bra"); break;
 			case (preg_match('/^det är du(.*)/', $input) ? true : false): return $this->read_file("det_ar_du"); break;
 
 			case (preg_match('/^det är(.*)/', $input) ? true : false): return $this->read_file("det_ar"); break;
@@ -163,10 +169,11 @@ class Brain
 			case (preg_match('/^det kommer(.*)/', $input) ? true : false): return $this->read_file("det_kommer"); break;
 			case (preg_match('/^det var(.*)/', $input) ? true : false): return $this->read_file("det_var"); break;
 			case (preg_match('/^det vill(.*)/', $input) ? true : false): return $this->read_file("det_vill"); break;
-			case (preg_match('/^(det samma|det samma)(.*)/', $input) ? true : false): return $this->read_file("det_samma"); break;
+			case (preg_match('/^(det samma|det samma|detsamma|desamma)(.*)/', $input) ? true : false): return $this->read_file("det_samma"); break;
 
 			//Du
 			case (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
+			case (preg_match('/^vad(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
 
 			case (preg_match('/^du är(.*)/', $input) ? true : false): return $this->read_file("du_ar"); break;
 			case (preg_match('/^du får(.*)/', $input) ? true : false): return $this->read_file("du_far"); break;
@@ -226,12 +233,14 @@ class Brain
 			case (preg_match('/^vad är (.*)(klockan|tiden)/', $input) ? true : false): return $this->get_time(); break;
 
 			case (preg_match('/^(vad|vem)(.*)är(.*)du/', $input) ? true : false): return $this->read_file("vad_ar_du"); break;
+			case (preg_match('/^(vad|vem)(.*)(skapat|skapare)(.*)/', $input) ? true : false): return $this->read_file("vem_skapat_dig"); break;
 			case (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^(vad(.*)för(.*)dig)/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)du/', $input) ? true : false): return $this->read_file("vad_heter_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)/', $input) ? true : false): return $this->read_file("vad_heter"); break;
 			case (preg_match('/^vad(.*)kan(.*)du/', $input) ? true : false): return $this->read_file("vad_kan_du"); break;
 			case (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input) ? true : false): return $this->get_knowledge(); break;
+			case (preg_match('/^vad(.*)trevligt/', $input) ? true : false): return $this->read_file("vad_trevligt"); break;
 			case (preg_match('/^vad(.*)vet(.*)du/', $input) ? true : false): return $this->read_file("vad_vet_du"); break;
 
 			case (preg_match('/^vad är(.*)/', $input) ? true : false): return $this->read_file("vad_ar"); break;
@@ -303,15 +312,19 @@ class Brain
 			case (preg_match('/^(\:\)|\:\(|\:o|\:d)/', $input) ? true : false): return $this->read_file("smiley"); break;
 			case (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input) ? true : false): return $this->read_file("ja"); break;
 			case (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input) ? true : false): return $this->read_file("jo"); break;
-			case (preg_match('/^(nej|nope|nje|no|nejdå|nepp)(.*)/', $input) ? true : false): return $this->read_file("nej"); break;
+			case (preg_match('/^(nej|nope|nja|no|nejdå|nepp)(.*)/', $input) ? true : false): return $this->read_file("nej"); break;
 
-			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
+			// Din / Ditt
+			case (preg_match('/^(.*)din(.*)/', $input) ? true : false): return $this->read_file("din"); break;
+			case (preg_match('/^(.*)ditt(.*)/', $input) ? true : false): return $this->read_file("ditt"); break;
+
+			case ($is_question === TRUE): return $this->read_file("question"); break;
 
 			default:
 				$random = rand(1,8);
 				if ($random == 1) $answer = $this->send_image("cat");
-				else if ($random == 2) $answer = $this->get_talked_about();
-				else if ($random == 3) $answer = $this->get_random_wikipedia_article();
+				else if ($random == 2 || $random == 3) $answer = $this->get_talked_about();
+				else if ($random == 4) $answer = $this->get_random_wikipedia_article();
 				else $answer = $this->read_file("default_answer");
 
 				return $answer;

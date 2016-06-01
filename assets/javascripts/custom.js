@@ -41,7 +41,7 @@
 			return false;
 		}
 
-		randomDelay = Math.floor((Math.random() * 1500));
+		randomDelay = Math.floor((Math.random() * 1000));
 
 		$.ajax({
 			type: "POST",
