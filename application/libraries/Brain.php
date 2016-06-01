@@ -5,30 +5,23 @@ class Brain
 	public function __construct()
 	{
 		session_start();
-		
+
 		$this->CI =& get_instance();
-		$this->input = "";
 	}
 
 	public function get_answer($input)
 	{
-		$stripped_input = str_replace("?", "", $input);
-		$stripped_input = str_replace("!", "", $stripped_input);
-		$stripped_input = str_replace(".", "", $stripped_input);
-		$stripped_input = str_replace(",", "", $stripped_input);
-		$words = explode(" ", $stripped_input);
+		$input = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $input);
+		$words = explode(" ", $input);
 
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
-			$position = 0;
-			if ($words[0] == "jag" && $words[1] == "heter") $position = 2;
-			if ($words[0] == "mitt" && $words[1] == "namn") $position = 4;
-			if ($words[0] == "namnet" && $words[1] == "är") $position = 2;
-			
-			return $this->remember_name($words[$position]);
+			$name = $this->parse_name($words);
+			return $this->remember_name($name);
 		}
 
-		$this->input = $input;
+		// Look for unusual words, and save to to have something to talk about
+		$this->save_unusual_words($input);
 
 		switch($input)
 		{
@@ -231,13 +224,14 @@ class Brain
 			case (preg_match('/^vad är (.*)(en|ett) (.*)/', $input) ? true : false): return $this->read_wikipedia($words[3]); break;
 			case (preg_match('/^vad är (.*)/', $input) ? true : false): return $this->read_wikipedia($words[2]); break;
 			case (preg_match('/^vad är (.*)(klockan|tiden)/', $input) ? true : false): return $this->get_time(); break;
-			
+
 			case (preg_match('/^(vad|vem)(.*)är(.*)du/', $input) ? true : false): return $this->read_file("vad_ar_du"); break;
 			case (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^(vad(.*)för(.*)dig)/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)du/', $input) ? true : false): return $this->read_file("vad_heter_du"); break;
 			case (preg_match('/^vad(.*)heter(.*)/', $input) ? true : false): return $this->read_file("vad_heter"); break;
 			case (preg_match('/^vad(.*)kan(.*)du/', $input) ? true : false): return $this->read_file("vad_kan_du"); break;
+			case (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input) ? true : false): return $this->get_knowledge(); break;
 			case (preg_match('/^vad(.*)vet(.*)du/', $input) ? true : false): return $this->read_file("vad_vet_du"); break;
 
 			case (preg_match('/^vad är(.*)/', $input) ? true : false): return $this->read_file("vad_ar"); break;
@@ -286,7 +280,7 @@ class Brain
 			case (preg_match('/^vem kommer(.*)/', $input) ? true : false): return $this->read_file("vem_kommer"); break;
 			case (preg_match('/^vem vill(.*)/', $input) ? true : false): return $this->read_file("vem_vill"); break;
 			case (preg_match('/^vem ska(.*)/', $input) ? true : false): return $this->read_file("vem_ska"); break;
-			
+
 			case (preg_match('/^vem (.*)/', $input) ? true : false): return $this->read_file("vem"); break;
 
 			//Vi
@@ -310,16 +304,16 @@ class Brain
 			case (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input) ? true : false): return $this->read_file("ja"); break;
 			case (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input) ? true : false): return $this->read_file("jo"); break;
 			case (preg_match('/^(nej|nope|nje|no|nejdå|nepp)(.*)/', $input) ? true : false): return $this->read_file("nej"); break;
-			
+
 			case (preg_match('/^(.*)\?/', $input) ? true : false): return $this->read_file("question"); break;
-			
+
 			default:
 				$random = rand(1,8);
 				if ($random == 1) $answer = $this->send_image("cat");
 				else if ($random == 2) $answer = $this->get_talked_about();
 				else if ($random == 3) $answer = $this->get_random_wikipedia_article();
 				else $answer = $this->read_file("default_answer");
-				
+
 				return $answer;
 				break;
 		}
@@ -338,8 +332,6 @@ class Brain
 			$row = $contents[rand(0, count($contents) - 1)];
 			$row = str_replace("{0}", $replacement, $row);
 
-			$this->save_unusual_words($this->input);
-
 			$output = array('answer' => $row, 'answer_id' => $file);
 			return $output;
 		}
@@ -349,52 +341,92 @@ class Brain
 			return $output;
 		}
 	}
-	
+
+	public function get_knowledge()
+	{
+		$name = $this->CI->session->userdata('name');
+		$remembered_words = $this->CI->session->userdata('unusual_words');
+
+		$answer = "";
+
+		if (!empty($name))
+		{
+			$answer .= "Ditt namn är " . $name . ".";
+		}
+
+		if (count($remembered_words) > 0)
+		{
+			$answer .= " Du gillar att prata om ";
+
+			for ($x = 0; $x < count($remembered_words); $x++)
+			{
+				$answer .= $remembered_words[$x];
+				if ($x == count($remembered_words) - 2)
+				{
+					$answer .= " och ";
+				}
+				else if ($x < count($remembered_words) - 1)
+				{
+					$answer .= ", ";
+				}
+				else
+				{
+					$answer .= ".";
+				}
+			}
+		}
+
+		return array('answer' => $answer, 'answer_id' => 'Get knowledge');
+	}
+
 	public function get_talked_about()
 	{
 		$word = "kebab";
-		
-		if (count($_SESSION['unusual_words']) > 0)
+		$remembered_words = $this->CI->session->userdata('unusual_words');
+
+		if (count($remembered_words) > 0)
 		{
-			shuffle($_SESSION['unusual_words']);
-			$word = array_slice($_SESSION['unusual_words'], 0, 1);
+			shuffle($remembered_words);
+			$word = array_slice($remembered_words, 0, 1);
 			$word = $word[0];
 		}
-			
+
 		$answer = $this->read_file("du_namnde", $word);
-		
+
 		return array('answer' => $answer['answer'], 'answer_id' => 'Talked about');
 	}
-	
+
 	public function save_unusual_words($words)
 	{
 		$text_file = BASEPATH . '../assets/text/lists/usual_words.txt';
-		
+
 		$handle = fopen($text_file, "r");
 		$contents = fread($handle, filesize($text_file));
 		fclose($handle);
-		
-		$usual_words = explode("\n", $contents);
+
+		$usual_words = explode("\r\n", $contents);
 		$words = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $words);
 		$words = strtolower($words);
 		$word_array = explode(" ", $words);
-		
-		$new_words = "";
-		
-		if (!isset($_SESSION['unusual_words']))
+
+		$remembered_words = array();
+
+		if ($this->CI->session->userdata('unusual_words') !== FALSE)
 		{
-			$_SESSION['unusual_words'] = array();
+			$remembered_words = $this->CI->session->userdata('unusual_words');
 		}
 
 		foreach ($word_array as $word)
 		{
-			if (!in_array($word, $_SESSION['unusual_words']) && !in_array($word, $usual_words))
+			if (!in_array($word, $remembered_words) && !in_array($word, $usual_words))
 			{
-				$_SESSION['unusual_words'][] = strtolower($word);
+				$remembered_words[] = $word;
 			}
 		}
+
+		$this->CI->session->set_userdata('unusual_words', $remembered_words);
 	}
-	
+
 	public function send_image($motive)
 	{
 		$answer = $this->read_file("bild_katt")['answer'];
@@ -410,35 +442,35 @@ class Brain
 		$json = file_get_contents($url);
 		$obj = json_decode($json);
 		$article = (Array)$obj->query->pages;
-		
+
 		if (count($article) == 0)
 			return $this->read_file("default_answer");
-			
+
 		$article = reset($article);
-		
+
 		if (!isset($article->extract))
 			return $this->read_file("default_answer");
-		
+
 		$extract = $article->extract;
 
 		if (empty(str_replace(".", "", $extract)))
 			return $this->read_file("default_answer");
 
 		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
-		
+
 		return $output;
 	}
 
 	public function get_random_wikipedia_article()
 	{
 		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&generator=random&exchars=200";
-		
+
 		$json = file_get_contents($url);
 		$obj = json_decode($json);
 		$article = (Array)$obj->query->pages;
 		$extract = reset($article)->extract;
 		$extract = strip_tags($extract);
-		
+
 		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: RANDOM');
 		return $output;
 	}
@@ -461,6 +493,30 @@ class Brain
 		return $output;
 	}
 
+	public function parse_name($words)
+	{
+		$position = 0;
+
+		$ignored_words = array('jag', 'heter', 'mitt', 'namn', 'är', 'namnet', 'hej');
+
+		foreach ($words as $key => $word)
+		{
+			if (in_array($word, $ignored_words))
+			{
+				unset($words[$key]);
+			}
+		}
+
+		if (count($words) < 1)
+		{
+			return "Främling";
+		}
+
+		$name = array_values($words)[0];
+
+		return $name;
+	}
+
 	public function remember_name($input)
 	{
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
@@ -478,7 +534,7 @@ class Brain
 
 		return array('answer' => 'Trevligt att råkas, ' . $name . '. :)', 'answer_id' => 'Remember name');
 	}
-	
+
 	public function get_name()
 	{
 		$output = $this->read_file("vad_heter_jag", $this->CI->session->userdata('name'));
