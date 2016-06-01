@@ -33,7 +33,12 @@ class Bot extends CI_Controller {
 			$this->benchmark->mark('after_answer');
 			$benchmark = $this->benchmark->elapsed_time('before_answer', 'after_answer');
 
-			$output = array('timestamp' => date("H:i:s"), 'said' => $this->input->post('input'), 'answer' => $answer['answer'], 'answer_id' => $answer['answer_id'], 'benchmark' => $benchmark);
+			$output = array(
+				'timestamp' => date("H:i:s"),
+				'said' => $this->input->post('input'),
+				'answer' => $answer['answer'],
+				'answer_id' => $answer['answer_id'],
+				'benchmark' => $benchmark);
 
 			$this->_write_log($output);
 
