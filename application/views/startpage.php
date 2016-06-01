@@ -14,10 +14,10 @@
 	<img src="<?php echo base_url()?>assets/images/bot.jpg" class="bot-img" alt="Sarabot">
 </a>
 
-<form method="post" id="dialog_form" class="dialog-form" action="<?=base_url()?>bot/speak">
+<form method="post" id="dialog_form" class="dialog-form" action="<?=base_url('bot/speak')?>">
 	<input id="input_field" class="input-field" type="text" name="input">
 	<input type="submit" value="Säg" class="btn-submit">
-	<input type="button" value="Rensa" class="btn-clear" id="clear">
+	<input type="button" value="Rensa" class="btn-clear" id="clear" data-url="<?=base_url('bot/forget')?>">
 </form>
 
 <div id="dialog" class="dialog">

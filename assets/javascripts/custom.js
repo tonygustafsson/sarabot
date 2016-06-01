@@ -4,10 +4,6 @@
 		answerID = 0,
 		randomDelay = 0;
 
-	$(document).ready(function() {
-		$("input[type='text']:first", document.forms[0]).focus();
-	});
-
 	function speakBeforeSend() {
 		$(".input-field").attr('disabled', true);
 		$('.bot-img').addClass('thinking');
@@ -61,15 +57,7 @@
 		return false;
 	}
 
-	$('.dialog-form').on('submit', speak);
-
-	$('.btn-clear').on('click', function() {
-		$(".dialog").html("");
-		$(".input-field").val("");
-		$(".input-field").focus();
-	});
-
-	$('.input-field').on('keyup', function(e) {
+	function getHistory(e) {
 		if (e.keyCode === 38) {
 			historyIndex--;
 			historyIndex = (historyIndex < 1) ? 0 : historyIndex;
@@ -79,5 +67,16 @@
 			historyIndex++;
 			$('.input-field').val(inputHistory[historyIndex]);
 		}
+	}
+
+	$('.dialog-form').on('submit', speak);
+
+	$('.btn-clear').on('click', function() {
+		var url = $(this).data('url');
+		window.location.href = url;
 	});
+
+	$('.input-field').on('keyup', getHistory);
+
+	$("input[type='text']:first", document.forms[0]).focus();
 })();

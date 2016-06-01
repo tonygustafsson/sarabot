@@ -56,6 +56,11 @@ class Bot extends CI_Controller {
 		$this->load->view('html_bottom');
 	}
 
+	public function forget()
+	{
+		$this->session->sess_destroy();
+		redirect('/', 'refresh');
+	}
 }
 
 /* End of file bot.php */
