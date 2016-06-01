@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bot extends CI_Controller {
 
@@ -42,7 +43,7 @@ class Bot extends CI_Controller {
 
 	private function _write_log($input)
 	{
-		$file = BASEPATH . '../assets/text/chat_logs/' . date("YmdH") . '_' . $this->session->userdata('session_id') . '.txt';
+		$file = BASEPATH . '../assets/text/chat_logs/' . date("YmdH") . '_' . session_id() . '.txt';
 
 		$output = "<" . $input['timestamp'] . "> <User> " . $input['said'] . "\n<" . $input['timestamp'] . "> <Sarabot> " . $input['answer'] . " (" . $input['answer_id'] . ")\n";
 		write_file($file, $output, 'a+');

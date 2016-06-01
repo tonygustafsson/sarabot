@@ -4,8 +4,6 @@ class Brain
 {
 	public function __construct()
 	{
-		session_start();
-
 		$this->CI =& get_instance();
 	}
 
@@ -424,7 +422,7 @@ class Brain
 
 		$remembered_words = array();
 
-		if ($this->CI->session->userdata('unusual_words') !== FALSE)
+		if ($this->CI->session->userdata('unusual_words') !== NULL)
 		{
 			$remembered_words = $this->CI->session->userdata('unusual_words');
 		}

@@ -1,14 +1,0 @@
-<20:48:43> <User> Tony
-<20:48:43> <Sarabot> Trevligt att råkas, Tony. :) (Remember name)
-<20:48:46> <User> yes
-<20:48:46> <Sarabot> Jaså? Vad kul! Eller inte... (ja)
-<20:48:48> <User> Kewl
-<20:48:48> <Sarabot> Ska vi prata om nåt? (default_answer)
-<20:48:52> <User> Vad är en lampa?
-<20:48:52> <Sarabot> En lampa (av grekiska λαμπάς lampás = fackla) är i strikt mening en anordning för belysning. I dagligt tal används ordet synonymt med armatur, som är en avskärmande hållare för glödlampor och lysrör. En lampa som enligt definitionen är en apparat innehåller:
-Ljuskälla – den del som producerar ljus.
-Armatur – bland annat elektriska anslutningsdon, sockel och annan teknisk utrustning för att ljuskällan skall fungera.
-
- (Wikipedia: lampa)
-<20:49:07> <User> Hmmz
-<20:49:07> <Sarabot> Tröttnat på mig? (default_answer)
