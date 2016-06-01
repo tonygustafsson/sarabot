@@ -1,7 +1,7 @@
 <section id="metabox" itemscope itemtype="http://schema.org/WebApplication">
 	<meta itemprop="url" content="http://www.tonyg.se/projects/sarabot/">
 	<meta itemprop="creator" content="Tony Gustafsson">
-	<meta itemprop="image" content="<?=base_url()?>assets/images/bot.jpg">
+	<meta itemprop="image" content="<?=base_url('assets/images/bot.jpg')?>">
 	<meta itemprop="applicationCategory" content="Bot">
 	<meta itemprop="softwareVersion" content="2.0";
 
