@@ -321,7 +321,7 @@ class Brain
 
 		else {
 			$random = rand(1,8);
-			if ($random == 1) $answer = $this->send_image("cat");
+			if ($random == 1) $answer = $this->CI->images->send();
 			else if ($random == 2 || $random == 3) $answer = $this->CI->wordmemory->mention_memory();
 			else if ($random == 4) $answer = $this->get_random_wikipedia_article();
 			else $answer = $this->read_file("default_answer");
@@ -358,14 +358,6 @@ class Brain
 			$output = array('answer' => "Error: Could not find file!", 'file' => "Error!");
 			return $output;
 		}
-	}
-
-	public function send_image($motive)
-	{
-		$answer = $this->read_file("bild_katt")['answer'];
-		$answer .= '<br><img src="http://loremflickr.com/200/200" height="200" width="200">';
-		$output = array('answer' => $answer, 'answer_id' => 'Image: ' . $motive);
-		return $output;
 	}
 
 	public function read_wikipedia($word)
