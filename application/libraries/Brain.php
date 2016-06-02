@@ -23,310 +23,307 @@ class Brain
 		// Look for unusual words, and save to to have something to talk about
 		$this->save_unusual_words($input);
 
-		switch($input)
-		{
-			//Special
-			case (preg_match('/^jag heter (.*)/', $input) ? true : false): return $this->remember_name($input); break;
+		//Special
+		if (preg_match('/^jag heter (.*)/', $input)) return $this->remember_name($input);
 
-			case (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input) ? true : false): return $this->get_calc($raw_input); break;
+		else if (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input)) return $this->get_calc($raw_input);
+ 
+		else if (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input)) return $this->get_date();
+		else if (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input)) return $this->get_week();
+		else if (preg_match('/^(vad)(.*)heter(.*)jag/', $input)) return $this->get_name();
+		else if (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input)) return $this->get_name();
 
-			case (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input) ? true : false): return $this->get_date(); break;
-			case (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input) ? true : false): return $this->get_week(); break;
-			case (preg_match('/^(vad)(.*)heter(.*)jag/', $input) ? true : false): return $this->get_name(); break;
-			case (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input) ? true : false): return $this->get_name(); break;
+		else if (preg_match('/^(hejdå|farväl|hej då|far väl|baj baj|bye|quit)(.*)/', $input)) return $this->read_file("hej_da");
+		else if (preg_match('/^(hej|tjena|morrs|hallå|hejsan|halloj)(.*)/', $input)) return $this->read_file("hej");
+		else if (preg_match('/^välkommen(.*)tillbaka/', $input)) return $this->read_file("valkommen_tillbaka");
+		else if (preg_match('/^(.*)(god|trevlig)(.*)(morgon|morron)/', $input)) return $this->read_file("god_morgon");
+		else if (preg_match('/^(.*)(god|trevlig)(.*)(natt|kväll)/', $input)) return $this->read_file("god_natt");
+		else if (preg_match('/^(.*)asl(.*)/', $input)) return $this->read_file("asl");
+		else if (preg_match('/^(.*)cybersex(.*)/', $input)) return $this->read_file("cybersex");
+		else if (preg_match('/^(.*)(herregud|herre gud|omg|oh my god|shit)(.*)/', $input)) return $this->read_file("herre_gud");
+		else if (preg_match('/^(.*)(du|din)(.*)bitch(.*)/', $input)) return $this->read_file("du_bitch");
+		else if (preg_match('/^(.*)(hatar|ogillar)(.*)du(.*)/', $input)) return $this->read_file("hatar_du");
+		else if (preg_match('/^(.*)(du|din|ditt)(.*)duktig(.*)/', $input)) return $this->read_file("du_duktig");
+		else if (preg_match('/^(.*)(du|din)(.*)dum(.*)/', $input)) return $this->read_file("du_dum");
+		else if (preg_match('/^(.*)(du|din)(.*)fritid(.*)/', $input)) return $this->read_file("du_fritid");
+		else if (preg_match('/^(.*)(du|man)(.*)gjort(.*)/', $input)) return $this->read_file("du_gjort");
+		else if (preg_match('/^(.*)(du|din|ditt)(.*)(homo|bög|lebb|lesb)(.*)/', $input)) return $this->read_file("du_homo");
+		else if (preg_match('/^(.*)(du|din|ditt)(.*)(hora|fnask|lössläppt)(.*)/', $input)) return $this->read_file("du_hora");
+		else if (preg_match('/^(.*)(du|din|ditt)(.*)(kön|tjej|kille|man|kvinna|hona|hane)(.*)/', $input)) return $this->read_file("du_kon");
+		else if (preg_match('/^(.*)du kvar(.*)/', $input)) return $this->read_file("du_kvar");
+		else if (preg_match('/^(.*)ser(.*)du(.*)ut(.*)/', $input)) return $this->read_file("hur_ser_du_ut");
+		else if (preg_match('/^(.*)(jobbar|arbetar)(.*)du(.*)/', $input)) return $this->read_file("jobbar_du");
+		else if (preg_match('/^(.*)kram(.*)/', $input)) return $this->read_file("kram");
+		else if (preg_match('/^(.*)(puss|kiss|kyss)(.*)/', $input)) return $this->read_file("puss");
+		else if (preg_match('/^(.*)(mår du|läget|status|zup|whazup|what\'s up)(.*)/', $input)) return $this->read_file("laget");
+		else if (preg_match('/^(.*)måste(.*)/', $input)) return $this->read_file("maste");
+		else if (preg_match('/^nu(.*)/', $input)) return $this->read_file("nu");
+		else if (preg_match('/^(sluta|lägg av|lägg ner(.*))/', $input)) return $this->read_file("sluta");
+		else if (preg_match('/^(stick|dra(.*))/', $input)) return $this->read_file("stick");
+		else if (preg_match('/^sug(.*)/', $input)) return $this->read_file("sug");
+		else if (preg_match('/^tack(.*)/', $input)) return $this->read_file("tack");
+		else if (preg_match('/^tråkigt(.*)/', $input)) return $this->read_file("trakigt");
+		else if (preg_match('/^vad (tycker|anser|gillar) du/', $input)) return $this->read_file("vad_tycker_du");
+		else if (preg_match('/^(tycker du om|gillar du|älskar du)(.*)/', $input)) return $this->read_file("tycker_du_om");
+		else if (preg_match('/^tycker(.*)du/', $input)) return $this->read_file("tycker_du");
+		else if (preg_match('/^(.*)(väder|vädret)(.*)/', $input)) return $this->read_file("vadret");
+		else if (preg_match('/^(jag tänkte|tänkte)(.*)/', $input)) return $this->read_file("jag_tankte");
+		else if (preg_match('/^(kul|lustigt|roligt|haha)(.*)/', $input)) return $this->read_file("kul");
+		else if (preg_match('/^(tråkigt|trist|uselt|kass)(.*)/', $input)) return $this->read_file("trakigt");
 
-			case (preg_match('/^(hejdå|farväl|hej då|far väl|baj baj|bye|quit)(.*)/', $input) ? true : false): return $this->read_file("hej_da"); break;
-			case (preg_match('/^(hej|tjena|morrs|hallå|hejsan|halloj)(.*)/', $input) ? true : false): return $this->read_file("hej"); break;
-			case (preg_match('/^välkommen(.*)tillbaka/', $input) ? true : false): return $this->read_file("valkommen_tillbaka"); break;
-			case (preg_match('/^(.*)(god|trevlig)(.*)(morgon|morron)/', $input) ? true : false): return $this->read_file("god_morgon"); break;
-			case (preg_match('/^(.*)(god|trevlig)(.*)(natt|kväll)/', $input) ? true : false): return $this->read_file("god_natt"); break;
-			case (preg_match('/^(.*)asl(.*)/', $input) ? true : false): return $this->read_file("asl"); break;
-			case (preg_match('/^(.*)cybersex(.*)/', $input) ? true : false): return $this->read_file("cybersex"); break;
-			case (preg_match('/^(.*)(herregud|herre gud|omg|oh my god|shit)(.*)/', $input) ? true : false): return $this->read_file("herre_gud"); break;
-			case (preg_match('/^(.*)(du|din)(.*)bitch(.*)/', $input) ? true : false): return $this->read_file("du_bitch"); break;
-			case (preg_match('/^(.*)(hatar|ogillar)(.*)du(.*)/', $input) ? true : false): return $this->read_file("hatar_du"); break;
-			case (preg_match('/^(.*)(du|din|ditt)(.*)duktig(.*)/', $input) ? true : false): return $this->read_file("du_duktig"); break;
-			case (preg_match('/^(.*)(du|din)(.*)dum(.*)/', $input) ? true : false): return $this->read_file("du_dum"); break;
-			case (preg_match('/^(.*)(du|din)(.*)fritid(.*)/', $input) ? true : false): return $this->read_file("du_fritid"); break;
-			case (preg_match('/^(.*)(du|man)(.*)gjort(.*)/', $input) ? true : false): return $this->read_file("du_gjort"); break;
-			case (preg_match('/^(.*)(du|din|ditt)(.*)(homo|bög|lebb|lesb)(.*)/', $input) ? true : false): return $this->read_file("du_homo"); break;
-			case (preg_match('/^(.*)(du|din|ditt)(.*)(hora|fnask|lössläppt)(.*)/', $input) ? true : false): return $this->read_file("du_hora"); break;
-			case (preg_match('/^(.*)(du|din|ditt)(.*)(kön|tjej|kille|man|kvinna|hona|hane)(.*)/', $input) ? true : false): return $this->read_file("du_kon"); break;
-			case (preg_match('/^(.*)du kvar(.*)/', $input) ? true : false): return $this->read_file("du_kvar"); break;
-			case (preg_match('/^(.*)ser(.*)du(.*)ut(.*)/', $input) ? true : false): return $this->read_file("hur_ser_du_ut"); break;
-			case (preg_match('/^(.*)(jobbar|arbetar)(.*)du(.*)/', $input) ? true : false): return $this->read_file("jobbar_du"); break;
-			case (preg_match('/^(.*)kram(.*)/', $input) ? true : false): return $this->read_file("kram"); break;
-			case (preg_match('/^(.*)(puss|kiss|kyss)(.*)/', $input) ? true : false): return $this->read_file("puss"); break;
-			case (preg_match('/^(.*)(mår du|läget|status|zup|whazup|what\'s up)(.*)/', $input) ? true : false): return $this->read_file("laget"); break;
-			case (preg_match('/^(.*)måste(.*)/', $input) ? true : false): return $this->read_file("maste"); break;
-			case (preg_match('/^nu(.*)/', $input) ? true : false): return $this->read_file("nu"); break;
-			case (preg_match('/^(sluta|lägg av|lägg ner(.*))/', $input) ? true : false): return $this->read_file("sluta"); break;
-			case (preg_match('/^(stick|dra(.*))/', $input) ? true : false): return $this->read_file("stick"); break;
-			case (preg_match('/^sug(.*)/', $input) ? true : false): return $this->read_file("sug"); break;
-			case (preg_match('/^tack(.*)/', $input) ? true : false): return $this->read_file("tack"); break;
-			case (preg_match('/^tråkigt(.*)/', $input) ? true : false): return $this->read_file("trakigt"); break;
-			case (preg_match('/^vad (tycker|anser|gillar) du/', $input) ? true : false): return $this->read_file("vad_tycker_du"); break;
-			case (preg_match('/^(tycker du om|gillar du|älskar du)(.*)/', $input) ? true : false): return $this->read_file("tycker_du_om"); break;
-			case (preg_match('/^tycker(.*)du/', $input) ? true : false): return $this->read_file("tycker_du"); break;
-			case (preg_match('/^(.*)(väder|vädret)(.*)/', $input) ? true : false): return $this->read_file("vadret"); break;
-			case (preg_match('/^(jag tänkte|tänkte)(.*)/', $input) ? true : false): return $this->read_file("jag_tankte"); break;
-			case (preg_match('/^(kul|lustigt|roligt|haha)(.*)/', $input) ? true : false): return $this->read_file("kul"); break;
-			case (preg_match('/^(tråkigt|trist|uselt|kass)(.*)/', $input) ? true : false): return $this->read_file("trakigt"); break;
+		//Ska
+		else if (preg_match('/^(.*)ska(.*)du(.*)(göra|hitta på)/', $input)) return $this->read_file("ska_du_gora");
+		else if (preg_match('/^(.*)ska(.*)vi(.*)(pussas|kyssas|hångla|smeka)/', $input)) return $this->read_file("ska_vi_hangla");
+		else if (preg_match('/^(.*)ska(.*)vi(.*)(knulla|sex|porra|samlag)/', $input)) return $this->read_file("ska_vi_knulla");
+		else if (preg_match('/^(.*)ska(.*)vi/', $input)) return $this->read_file("ska_vi");
 
-			//Ska
-			case (preg_match('/^(.*)ska(.*)du(.*)(göra|hitta på)/', $input) ? true : false): return $this->read_file("ska_du_gora"); break;
-			case (preg_match('/^(.*)ska(.*)vi(.*)(pussas|kyssas|hångla|smeka)/', $input) ? true : false): return $this->read_file("ska_vi_hangla"); break;
-			case (preg_match('/^(.*)ska(.*)vi(.*)(knulla|sex|porra|samlag)/', $input) ? true : false): return $this->read_file("ska_vi_knulla"); break;
-			case (preg_match('/^(.*)ska(.*)vi/', $input) ? true : false): return $this->read_file("ska_vi"); break;
+		//Är
+		else if (preg_match('/^är(.*)du(.*)veg(.*)/', $input)) return $this->read_file("du_veg");
 
-			//Är
-			case (preg_match('/^är(.*)du(.*)veg(.*)/', $input) ? true : false): return $this->read_file("du_veg"); break;
+		else if (preg_match('/^är den(.*)/', $input)) return $this->read_file("ar_den");
+		else if (preg_match('/^är det(.*)/', $input)) return $this->read_file("ar_det");
+		else if (preg_match('/^är du(.*)/', $input)) return $this->read_file("ar_du");
+		else if (preg_match('/^är han(.*)/', $input)) return $this->read_file("ar_han");
+		else if (preg_match('/^är hon(.*)/', $input)) return $this->read_file("ar_hon");
+		else if (preg_match('/^är jag(.*)/', $input)) return $this->read_file("ar_jag");
+		else if (preg_match('/^är vi(.*)/', $input)) return $this->read_file("ar_vi");
 
-			case (preg_match('/^är den(.*)/', $input) ? true : false): return $this->read_file("ar_den"); break;
-			case (preg_match('/^är det(.*)/', $input) ? true : false): return $this->read_file("ar_det"); break;
-			case (preg_match('/^är du(.*)/', $input) ? true : false): return $this->read_file("ar_du"); break;
-			case (preg_match('/^är han(.*)/', $input) ? true : false): return $this->read_file("ar_han"); break;
-			case (preg_match('/^är hon(.*)/', $input) ? true : false): return $this->read_file("ar_hon"); break;
-			case (preg_match('/^är jag(.*)/', $input) ? true : false): return $this->read_file("ar_jag"); break;
-			case (preg_match('/^är vi(.*)/', $input) ? true : false): return $this->read_file("ar_vi"); break;
+		else if (preg_match('/^är (.*)/', $input)) return $this->read_file("ar");
 
-			case (preg_match('/^är (.*)/', $input) ? true : false): return $this->read_file("ar"); break;
+		//Har
+		else if (preg_match('/^har den(.*)/', $input)) return $this->read_file("har_den");
+		else if (preg_match('/^har det(.*)/', $input)) return $this->read_file("har_det");
+		else if (preg_match('/^har(.*)du(.*)känslor/', $input)) return $this->read_file("du_kanslor");
+		else if (preg_match('/^har du(.*)/', $input)) return $this->read_file("har_du");
+		else if (preg_match('/^har han(.*)/', $input)) return $this->read_file("har_han");
+		else if (preg_match('/^har hon(.*)/', $input)) return $this->read_file("har_hon");
+		else if (preg_match('/^har jag(.*)/', $input)) return $this->read_file("har_jag");
+		else if (preg_match('/^har vi(.*)/', $input)) return $this->read_file("har_vi");
+		else if (preg_match('/^har (.*)/', $input)) return $this->read_file("har");
 
-			//Har
-			case (preg_match('/^har den(.*)/', $input) ? true : false): return $this->read_file("har_den"); break;
-			case (preg_match('/^har det(.*)/', $input) ? true : false): return $this->read_file("har_det"); break;
-			case (preg_match('/^har(.*)du(.*)känslor/', $input) ? true : false): return $this->read_file("du_kanslor"); break;
-			case (preg_match('/^har du(.*)/', $input) ? true : false): return $this->read_file("har_du"); break;
-			case (preg_match('/^har han(.*)/', $input) ? true : false): return $this->read_file("har_han"); break;
-			case (preg_match('/^har hon(.*)/', $input) ? true : false): return $this->read_file("har_hon"); break;
-			case (preg_match('/^har jag(.*)/', $input) ? true : false): return $this->read_file("har_jag"); break;
-			case (preg_match('/^har vi(.*)/', $input) ? true : false): return $this->read_file("har_vi"); break;
-			case (preg_match('/^har (.*)/', $input) ? true : false): return $this->read_file("har"); break;
+		//Kan
+		else if (preg_match('/^kan den(.*)/', $input)) return $this->read_file("kan_den");
+		else if (preg_match('/^kan det(.*)/', $input)) return $this->read_file("kan_det");
+		else if (preg_match('/^kan du(.*)/', $input)) return $this->read_file("kan_du");
+		else if (preg_match('/^kan han(.*)/', $input)) return $this->read_file("kan_han");
+		else if (preg_match('/^kan hon(.*)/', $input)) return $this->read_file("kan_hon");
+		else if (preg_match('/^kan jag(.*)/', $input)) return $this->read_file("kan_jag");
+		else if (preg_match('/^kan vi(.*)/', $input)) return $this->read_file("kan_vi");
+		else if (preg_match('/^kan (.*)/', $input)) return $this->read_file("kan");
 
-			//Kan
-			case (preg_match('/^kan den(.*)/', $input) ? true : false): return $this->read_file("kan_den"); break;
-			case (preg_match('/^kan det(.*)/', $input) ? true : false): return $this->read_file("kan_det"); break;
-			case (preg_match('/^kan du(.*)/', $input) ? true : false): return $this->read_file("kan_du"); break;
-			case (preg_match('/^kan han(.*)/', $input) ? true : false): return $this->read_file("kan_han"); break;
-			case (preg_match('/^kan hon(.*)/', $input) ? true : false): return $this->read_file("kan_hon"); break;
-			case (preg_match('/^kan jag(.*)/', $input) ? true : false): return $this->read_file("kan_jag"); break;
-			case (preg_match('/^kan vi(.*)/', $input) ? true : false): return $this->read_file("kan_vi"); break;
-			case (preg_match('/^kan (.*)/', $input) ? true : false): return $this->read_file("kan"); break;
+		//Vill
+		else if (preg_match('/^vill den(.*)/', $input)) return $this->read_file("vill_den");
+		else if (preg_match('/^vill det(.*)/', $input)) return $this->read_file("vill_det");
+		else if (preg_match('/^vill du(.*)/', $input)) return $this->read_file("vill_du");
+		else if (preg_match('/^vill han(.*)/', $input)) return $this->read_file("vill_han");
+		else if (preg_match('/^vill hon(.*)/', $input)) return $this->read_file("vill_hon");
+		else if (preg_match('/^vill jag(.*)/', $input)) return $this->read_file("vill_jag");
+		else if (preg_match('/^vill vi(.*)/', $input)) return $this->read_file("vill_vi");
+		else if (preg_match('/^vill (.*)/', $input)) return $this->read_file("vill");
 
-			//Vill
-			case (preg_match('/^vill den(.*)/', $input) ? true : false): return $this->read_file("vill_den"); break;
-			case (preg_match('/^vill det(.*)/', $input) ? true : false): return $this->read_file("vill_det"); break;
-			case (preg_match('/^vill du(.*)/', $input) ? true : false): return $this->read_file("vill_du"); break;
-			case (preg_match('/^vill han(.*)/', $input) ? true : false): return $this->read_file("vill_han"); break;
-			case (preg_match('/^vill hon(.*)/', $input) ? true : false): return $this->read_file("vill_hon"); break;
-			case (preg_match('/^vill jag(.*)/', $input) ? true : false): return $this->read_file("vill_jag"); break;
-			case (preg_match('/^vill vi(.*)/', $input) ? true : false): return $this->read_file("vill_vi"); break;
-			case (preg_match('/^vill (.*)/', $input) ? true : false): return $this->read_file("vill"); break;
+		//Vilken
+		else if (preg_match('/^vilken(.*)är(.*)din/', $input)) return $this->read_file("vilken_ar_din");
+		else if (preg_match('/^vilken/', $input)) return $this->read_file("vilken");
 
-			//Vilken
-			case (preg_match('/^vilken(.*)är(.*)din/', $input) ? true : false): return $this->read_file("vilken_ar_din"); break;
-			case (preg_match('/^vilken/', $input) ? true : false): return $this->read_file("vilken"); break;
+		//Visste
+		else if (preg_match('/^visste den(.*)/', $input)) return $this->read_file("visste_den");
+		else if (preg_match('/^visste det(.*)/', $input)) return $this->read_file("visste_det");
+		else if (preg_match('/^visste du(.*)/', $input)) return $this->read_file("visste_du");
+		else if (preg_match('/^visste han(.*)/', $input)) return $this->read_file("visste_han");
+		else if (preg_match('/^visste hon(.*)/', $input)) return $this->read_file("visste_hon");
+		else if (preg_match('/^visste jag(.*)/', $input)) return $this->read_file("visste_jag");
+		else if (preg_match('/^visste vi(.*)/', $input)) return $this->read_file("visste_vi");
+		else if (preg_match('/^visste (.*)/', $input)) return $this->read_file("visste");
 
-			//Visste
-			case (preg_match('/^visste den(.*)/', $input) ? true : false): return $this->read_file("visste_den"); break;
-			case (preg_match('/^visste det(.*)/', $input) ? true : false): return $this->read_file("visste_det"); break;
-			case (preg_match('/^visste du(.*)/', $input) ? true : false): return $this->read_file("visste_du"); break;
-			case (preg_match('/^visste han(.*)/', $input) ? true : false): return $this->read_file("visste_han"); break;
-			case (preg_match('/^visste hon(.*)/', $input) ? true : false): return $this->read_file("visste_hon"); break;
-			case (preg_match('/^visste jag(.*)/', $input) ? true : false): return $this->read_file("visste_jag"); break;
-			case (preg_match('/^visste vi(.*)/', $input) ? true : false): return $this->read_file("visste_vi"); break;
-			case (preg_match('/^visste (.*)/', $input) ? true : false): return $this->read_file("visste"); break;
+		//De
+		else if (preg_match('/^(de|dom|dem) är(.*)/', $input)) return $this->read_file("de_ar");
+		else if (preg_match('/^(de|dom|dem) får(.*)/', $input)) return $this->read_file("de_far");
+		else if (preg_match('/^(de|dom|dem) har(.*)/', $input)) return $this->read_file("de_har");
+		else if (preg_match('/^(de|dom|dem) kan(.*)/', $input)) return $this->read_file("de_kan");
+		else if (preg_match('/^(de|dom|dem) kommer(.*)/', $input)) return $this->read_file("de_kommer");
+		else if (preg_match('/^(de|dom|dem) var(.*)/', $input)) return $this->read_file("de_var");
+		else if (preg_match('/^(de|dom|dem) vill(.*)/', $input)) return $this->read_file("de_vill");
 
-			//De
-			case (preg_match('/^(de|dom|dem) är(.*)/', $input) ? true : false): return $this->read_file("de_ar"); break;
-			case (preg_match('/^(de|dom|dem) får(.*)/', $input) ? true : false): return $this->read_file("de_far"); break;
-			case (preg_match('/^(de|dom|dem) har(.*)/', $input) ? true : false): return $this->read_file("de_har"); break;
-			case (preg_match('/^(de|dom|dem) kan(.*)/', $input) ? true : false): return $this->read_file("de_kan"); break;
-			case (preg_match('/^(de|dom|dem) kommer(.*)/', $input) ? true : false): return $this->read_file("de_kommer"); break;
-			case (preg_match('/^(de|dom|dem) var(.*)/', $input) ? true : false): return $this->read_file("de_var"); break;
-			case (preg_match('/^(de|dom|dem) vill(.*)/', $input) ? true : false): return $this->read_file("de_vill"); break;
+		//Den
+		else if (preg_match('/^den är(.*)/', $input)) return $this->read_file("den_ar");
+		else if (preg_match('/^den får(.*)/', $input)) return $this->read_file("den_far");
+		else if (preg_match('/^den har(.*)/', $input)) return $this->read_file("den_har");
+		else if (preg_match('/^den kan(.*)/', $input)) return $this->read_file("den_kan");
+		else if (preg_match('/^den kommer(.*)/', $input)) return $this->read_file("den_kommer");
+		else if (preg_match('/^den var(.*)/', $input)) return $this->read_file("den_var");
+		else if (preg_match('/^den vill(.*)/', $input)) return $this->read_file("den_vill");
 
-			//Den
-			case (preg_match('/^den är(.*)/', $input) ? true : false): return $this->read_file("den_ar"); break;
-			case (preg_match('/^den får(.*)/', $input) ? true : false): return $this->read_file("den_far"); break;
-			case (preg_match('/^den har(.*)/', $input) ? true : false): return $this->read_file("den_har"); break;
-			case (preg_match('/^den kan(.*)/', $input) ? true : false): return $this->read_file("den_kan"); break;
-			case (preg_match('/^den kommer(.*)/', $input) ? true : false): return $this->read_file("den_kommer"); break;
-			case (preg_match('/^den var(.*)/', $input) ? true : false): return $this->read_file("den_var"); break;
-			case (preg_match('/^den vill(.*)/', $input) ? true : false): return $this->read_file("den_vill"); break;
+		//Det
+		else if (preg_match('/^det är bra(.*)/', $input)) return $this->read_file("det_ar_bra");
+		else if (preg_match('/^(cool|coolt|grymt|fett|nice|awesome|vad bra)(.*)/', $input)) return $this->read_file("det_ar_bra");
+		else if (preg_match('/^det är du(.*)/', $input)) return $this->read_file("det_ar_du");
 
-			//Det
-			case (preg_match('/^det är bra(.*)/', $input) ? true : false): return $this->read_file("det_ar_bra"); break;
-			case (preg_match('/^(cool|coolt|grymt|fett|nice|awesome|vad bra)(.*)/', $input) ? true : false): return $this->read_file("det_ar_bra"); break;
-			case (preg_match('/^det är du(.*)/', $input) ? true : false): return $this->read_file("det_ar_du"); break;
+		else if (preg_match('/^det är(.*)/', $input)) return $this->read_file("det_ar");
+		else if (preg_match('/^det får(.*)/', $input)) return $this->read_file("det_far");
+		else if (preg_match('/^det har(.*)/', $input)) return $this->read_file("det_har");
+		else if (preg_match('/^det kan(.*)/', $input)) return $this->read_file("det_kan");
+		else if (preg_match('/^det kommer(.*)/', $input)) return $this->read_file("det_kommer");
+		else if (preg_match('/^det var(.*)/', $input)) return $this->read_file("det_var");
+		else if (preg_match('/^det vill(.*)/', $input)) return $this->read_file("det_vill");
+		else if (preg_match('/^(det samma|det samma|detsamma|desamma)(.*)/', $input)) return $this->read_file("det_samma");
 
-			case (preg_match('/^det är(.*)/', $input) ? true : false): return $this->read_file("det_ar"); break;
-			case (preg_match('/^det får(.*)/', $input) ? true : false): return $this->read_file("det_far"); break;
-			case (preg_match('/^det har(.*)/', $input) ? true : false): return $this->read_file("det_har"); break;
-			case (preg_match('/^det kan(.*)/', $input) ? true : false): return $this->read_file("det_kan"); break;
-			case (preg_match('/^det kommer(.*)/', $input) ? true : false): return $this->read_file("det_kommer"); break;
-			case (preg_match('/^det var(.*)/', $input) ? true : false): return $this->read_file("det_var"); break;
-			case (preg_match('/^det vill(.*)/', $input) ? true : false): return $this->read_file("det_vill"); break;
-			case (preg_match('/^(det samma|det samma|detsamma|desamma)(.*)/', $input) ? true : false): return $this->read_file("det_samma"); break;
+		//Du
+		else if (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input)) return $this->read_file("du_snygg");
+		else if (preg_match('/^vad(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input)) return $this->read_file("du_snygg");
 
-			//Du
-			case (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
-			case (preg_match('/^vad(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input) ? true : false): return $this->read_file("du_snygg"); break;
+		else if (preg_match('/^du är(.*)/', $input)) return $this->read_file("du_ar");
+		else if (preg_match('/^du får(.*)/', $input)) return $this->read_file("du_far");
+		else if (preg_match('/^du har(.*)/', $input)) return $this->read_file("du_har");
+		else if (preg_match('/^du kan(.*)/', $input)) return $this->read_file("du_kan");
+		else if (preg_match('/^du kommer(.*)/', $input)) return $this->read_file("du_kommer");
+		else if (preg_match('/^du var(.*)/', $input)) return $this->read_file("du_var");
+		else if (preg_match('/^du vill(.*)/', $input)) return $this->read_file("du_vill");
 
-			case (preg_match('/^du är(.*)/', $input) ? true : false): return $this->read_file("du_ar"); break;
-			case (preg_match('/^du får(.*)/', $input) ? true : false): return $this->read_file("du_far"); break;
-			case (preg_match('/^du har(.*)/', $input) ? true : false): return $this->read_file("du_har"); break;
-			case (preg_match('/^du kan(.*)/', $input) ? true : false): return $this->read_file("du_kan"); break;
-			case (preg_match('/^du kommer(.*)/', $input) ? true : false): return $this->read_file("du_kommer"); break;
-			case (preg_match('/^du var(.*)/', $input) ? true : false): return $this->read_file("du_var"); break;
-			case (preg_match('/^du vill(.*)/', $input) ? true : false): return $this->read_file("du_vill"); break;
+		//Han
+		else if (preg_match('/^han är(.*)/', $input)) return $this->read_file("han_ar");
+		else if (preg_match('/^han får(.*)/', $input)) return $this->read_file("han_far");
+		else if (preg_match('/^han har(.*)/', $input)) return $this->read_file("han_har");
+		else if (preg_match('/^han kan(.*)/', $input)) return $this->read_file("han_kan");
+		else if (preg_match('/^han kommer(.*)/', $input)) return $this->read_file("han_kommer");
+		else if (preg_match('/^han var(.*)/', $input)) return $this->read_file("han_var");
+		else if (preg_match('/^han vill(.*)/', $input)) return $this->read_file("han_vill");
 
-			//Han
-			case (preg_match('/^han är(.*)/', $input) ? true : false): return $this->read_file("han_ar"); break;
-			case (preg_match('/^han får(.*)/', $input) ? true : false): return $this->read_file("han_far"); break;
-			case (preg_match('/^han har(.*)/', $input) ? true : false): return $this->read_file("han_har"); break;
-			case (preg_match('/^han kan(.*)/', $input) ? true : false): return $this->read_file("han_kan"); break;
-			case (preg_match('/^han kommer(.*)/', $input) ? true : false): return $this->read_file("han_kommer"); break;
-			case (preg_match('/^han var(.*)/', $input) ? true : false): return $this->read_file("han_var"); break;
-			case (preg_match('/^han vill(.*)/', $input) ? true : false): return $this->read_file("han_vill"); break;
+		//Hon
+		else if (preg_match('/^hon är(.*)/', $input)) return $this->read_file("hon_ar");
+		else if (preg_match('/^hon får(.*)/', $input)) return $this->read_file("hon_far");
+		else if (preg_match('/^hon har(.*)/', $input)) return $this->read_file("hon_har");
+		else if (preg_match('/^hon kan(.*)/', $input)) return $this->read_file("hon_kan");
+		else if (preg_match('/^hon kommer(.*)/', $input)) return $this->read_file("hon_kommer");
+		else if (preg_match('/^hon var(.*)/', $input)) return $this->read_file("hon_var");
+		else if (preg_match('/^hon vill(.*)/', $input)) return $this->read_file("hon_vill");
 
-			//Hon
-			case (preg_match('/^hon är(.*)/', $input) ? true : false): return $this->read_file("hon_ar"); break;
-			case (preg_match('/^hon får(.*)/', $input) ? true : false): return $this->read_file("hon_far"); break;
-			case (preg_match('/^hon har(.*)/', $input) ? true : false): return $this->read_file("hon_har"); break;
-			case (preg_match('/^hon kan(.*)/', $input) ? true : false): return $this->read_file("hon_kan"); break;
-			case (preg_match('/^hon kommer(.*)/', $input) ? true : false): return $this->read_file("hon_kommer"); break;
-			case (preg_match('/^hon var(.*)/', $input) ? true : false): return $this->read_file("hon_var"); break;
-			case (preg_match('/^hon vill(.*)/', $input) ? true : false): return $this->read_file("hon_vill"); break;
+		//Jag
+		else if (preg_match('/^jag är(.*)/', $input)) return $this->read_file("jag_ar");
+		else if (preg_match('/^jag får(.*)/', $input)) return $this->read_file("jag_far");
+		else if (preg_match('/^jag har(.*)/', $input)) return $this->read_file("jag_har");
+		else if (preg_match('/^jag kan(.*)/', $input)) return $this->read_file("jag_kan");
+		else if (preg_match('/^jag kommer(.*)/', $input)) return $this->read_file("jag_kommer");
+		else if (preg_match('/^jag var(.*)/', $input)) return $this->read_file("jag_var");
+		else if (preg_match('/^jag vill(.*)/', $input)) return $this->read_file("jag_vill");
 
-			//Jag
-			case (preg_match('/^jag är(.*)/', $input) ? true : false): return $this->read_file("jag_ar"); break;
-			case (preg_match('/^jag får(.*)/', $input) ? true : false): return $this->read_file("jag_far"); break;
-			case (preg_match('/^jag har(.*)/', $input) ? true : false): return $this->read_file("jag_har"); break;
-			case (preg_match('/^jag kan(.*)/', $input) ? true : false): return $this->read_file("jag_kan"); break;
-			case (preg_match('/^jag kommer(.*)/', $input) ? true : false): return $this->read_file("jag_kommer"); break;
-			case (preg_match('/^jag var(.*)/', $input) ? true : false): return $this->read_file("jag_var"); break;
-			case (preg_match('/^jag vill(.*)/', $input) ? true : false): return $this->read_file("jag_vill"); break;
+		else if (preg_match('/^jag(.*)(älskar|kär|tycker om)(.*)dig/', $input)) return $this->read_file("jag_alskar_dig");
+		else if (preg_match('/^jag(.*)(hatar|avskyr|ogillar)(.*)dig/', $input)) return $this->read_file("jag_hatar_dig");
+		else if (preg_match('/^(.*)jag(.*)tillbaka(.*)/', $input)) return $this->read_file("jag_tillbaka");
+		else if (preg_match('/^jag(.*)/', $input)) return $this->read_file("jag");
 
-			case (preg_match('/^jag(.*)(älskar|kär|tycker om)(.*)dig/', $input) ? true : false): return $this->read_file("jag_alskar_dig"); break;
-			case (preg_match('/^jag(.*)(hatar|avskyr|ogillar)(.*)dig/', $input) ? true : false): return $this->read_file("jag_hatar_dig"); break;
-			case (preg_match('/^(.*)jag(.*)tillbaka(.*)/', $input) ? true : false): return $this->read_file("jag_tillbaka"); break;
-			case (preg_match('/^jag(.*)/', $input) ? true : false): return $this->read_file("jag"); break;
+		//När
+		else if (preg_match('/^när är(.*)/', $input)) return $this->read_file("nar_ar");
+		else if (preg_match('/^när får(.*)/', $input)) return $this->read_file("nar_far");
+		else if (preg_match('/^när har(.*)/', $input)) return $this->read_file("nar_har");
+		else if (preg_match('/^när kan(.*)/', $input)) return $this->read_file("nar_kan");
+		else if (preg_match('/^när kommer(.*)/', $input)) return $this->read_file("nar_kommer");
+		else if (preg_match('/^när var(.*)/', $input)) return $this->read_file("nar_var");
+		else if (preg_match('/^när vill(.*)/', $input)) return $this->read_file("nar_vill");
 
-			//När
-			case (preg_match('/^när är(.*)/', $input) ? true : false): return $this->read_file("nar_ar"); break;
-			case (preg_match('/^när får(.*)/', $input) ? true : false): return $this->read_file("nar_far"); break;
-			case (preg_match('/^när har(.*)/', $input) ? true : false): return $this->read_file("nar_har"); break;
-			case (preg_match('/^när kan(.*)/', $input) ? true : false): return $this->read_file("nar_kan"); break;
-			case (preg_match('/^när kommer(.*)/', $input) ? true : false): return $this->read_file("nar_kommer"); break;
-			case (preg_match('/^när var(.*)/', $input) ? true : false): return $this->read_file("nar_var"); break;
-			case (preg_match('/^när vill(.*)/', $input) ? true : false): return $this->read_file("nar_vill"); break;
+		else if (preg_match('/^när ska(.*)/', $input)) return $this->read_file("nar_ska");
+		else if (preg_match('/^när (.*)/', $input)) return $this->read_file("nar");
 
-			case (preg_match('/^när ska(.*)/', $input) ? true : false): return $this->read_file("nar_ska"); break;
-			case (preg_match('/^när (.*)/', $input) ? true : false): return $this->read_file("nar"); break;
+		//Vad
+		else if (preg_match('/^vad är (.*)(en|ett) (.*)/', $input)) return $this->read_wikipedia($words[3]);
+		else if (preg_match('/^vad är (.*)/', $input)) return $this->read_wikipedia($words[2]);
+		else if (preg_match('/^vad är (.*)(klockan|tiden)/', $input)) return $this->get_time();
 
-			//Vad
-			case (preg_match('/^vad är (.*)(en|ett) (.*)/', $input) ? true : false): return $this->read_wikipedia($words[3]); break;
-			case (preg_match('/^vad är (.*)/', $input) ? true : false): return $this->read_wikipedia($words[2]); break;
-			case (preg_match('/^vad är (.*)(klockan|tiden)/', $input) ? true : false): return $this->get_time(); break;
+		else if (preg_match('/^(vad|vem)(.*)är(.*)du/', $input)) return $this->read_file("vad_ar_du");
+		else if (preg_match('/^(vad|vem)(.*)(skapat|skapare)(.*)/', $input)) return $this->read_file("vem_skapat_dig");
+		else if (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input)) return $this->read_file("vad_gor_du");
+		else if (preg_match('/^(vad(.*)för(.*)dig)/', $input)) return $this->read_file("vad_gor_du");
+		else if (preg_match('/^vad(.*)heter(.*)du/', $input)) return $this->read_file("vad_heter_du");
+		else if (preg_match('/^vad(.*)heter(.*)/', $input)) return $this->read_file("vad_heter");
+		else if (preg_match('/^vad(.*)kan(.*)du/', $input)) return $this->read_file("vad_kan_du");
+		else if (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input)) return $this->get_knowledge();
+		else if (preg_match('/^vad(.*)trevligt/', $input)) return $this->read_file("vad_trevligt");
+		else if (preg_match('/^vad(.*)vet(.*)du/', $input)) return $this->read_file("vad_vet_du");
 
-			case (preg_match('/^(vad|vem)(.*)är(.*)du/', $input) ? true : false): return $this->read_file("vad_ar_du"); break;
-			case (preg_match('/^(vad|vem)(.*)(skapat|skapare)(.*)/', $input) ? true : false): return $this->read_file("vem_skapat_dig"); break;
-			case (preg_match('/^(vad(.*)gör(.*)du)|vad händer/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
-			case (preg_match('/^(vad(.*)för(.*)dig)/', $input) ? true : false): return $this->read_file("vad_gor_du"); break;
-			case (preg_match('/^vad(.*)heter(.*)du/', $input) ? true : false): return $this->read_file("vad_heter_du"); break;
-			case (preg_match('/^vad(.*)heter(.*)/', $input) ? true : false): return $this->read_file("vad_heter"); break;
-			case (preg_match('/^vad(.*)kan(.*)du/', $input) ? true : false): return $this->read_file("vad_kan_du"); break;
-			case (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input) ? true : false): return $this->get_knowledge(); break;
-			case (preg_match('/^vad(.*)trevligt/', $input) ? true : false): return $this->read_file("vad_trevligt"); break;
-			case (preg_match('/^vad(.*)vet(.*)du/', $input) ? true : false): return $this->read_file("vad_vet_du"); break;
+		else if (preg_match('/^vad är(.*)/', $input)) return $this->read_file("vad_ar");
+		else if (preg_match('/^vad får(.*)/', $input)) return $this->read_file("vad_far");
+		else if (preg_match('/^vad har(.*)/', $input)) return $this->read_file("vad_har");
+		else if (preg_match('/^vad kan(.*)/', $input)) return $this->read_file("vad_kan");
+		else if (preg_match('/^vad kommer(.*)/', $input)) return $this->read_file("vad_kommer");
+		else if (preg_match('/^vad var(.*)/', $input)) return $this->read_file("vad_var");
+		else if (preg_match('/^vad vill(.*)du/', $input)) return $this->read_file("vad_vill_du");
+		else if (preg_match('/^vad vill(.*)/', $input)) return $this->read_file("vad_vill");
 
-			case (preg_match('/^vad är(.*)/', $input) ? true : false): return $this->read_file("vad_ar"); break;
-			case (preg_match('/^vad får(.*)/', $input) ? true : false): return $this->read_file("vad_far"); break;
-			case (preg_match('/^vad har(.*)/', $input) ? true : false): return $this->read_file("vad_har"); break;
-			case (preg_match('/^vad kan(.*)/', $input) ? true : false): return $this->read_file("vad_kan"); break;
-			case (preg_match('/^vad kommer(.*)/', $input) ? true : false): return $this->read_file("vad_kommer"); break;
-			case (preg_match('/^vad var(.*)/', $input) ? true : false): return $this->read_file("vad_var"); break;
-			case (preg_match('/^vad vill(.*)du/', $input) ? true : false): return $this->read_file("vad_vill_du"); break;
-			case (preg_match('/^vad vill(.*)/', $input) ? true : false): return $this->read_file("vad_vill"); break;
+		else if (preg_match('/^vad ska(.*)/', $input)) return $this->read_file("vad_ska");
+		else if (preg_match('/^vad (.*)/', $input)) return $this->read_file("vad");
 
-			case (preg_match('/^vad ska(.*)/', $input) ? true : false): return $this->read_file("vad_ska"); break;
-			case (preg_match('/^vad (.*)/', $input) ? true : false): return $this->read_file("vad"); break;
+		//Varför
+		else if (preg_match('/^varför är(.*)/', $input)) return $this->read_file("varfor_ar");
+		else if (preg_match('/^varför får(.*)/', $input)) return $this->read_file("varfor_far");
+		else if (preg_match('/^varför har(.*)/', $input)) return $this->read_file("varfor_har");
+		else if (preg_match('/^varför kan(.*)/', $input)) return $this->read_file("varfor_kan");
+		else if (preg_match('/^varför kommer(.*)/', $input)) return $this->read_file("varfor_kommer");
+		else if (preg_match('/^varför var(.*)/', $input)) return $this->read_file("varfor_var");
+		else if (preg_match('/^varför vill(.*)/', $input)) return $this->read_file("varfor_vill");
 
-			//Varför
-			case (preg_match('/^varför är(.*)/', $input) ? true : false): return $this->read_file("varfor_ar"); break;
-			case (preg_match('/^varför får(.*)/', $input) ? true : false): return $this->read_file("varfor_far"); break;
-			case (preg_match('/^varför har(.*)/', $input) ? true : false): return $this->read_file("varfor_har"); break;
-			case (preg_match('/^varför kan(.*)/', $input) ? true : false): return $this->read_file("varfor_kan"); break;
-			case (preg_match('/^varför kommer(.*)/', $input) ? true : false): return $this->read_file("varfor_kommer"); break;
-			case (preg_match('/^varför var(.*)/', $input) ? true : false): return $this->read_file("varfor_var"); break;
-			case (preg_match('/^varför vill(.*)/', $input) ? true : false): return $this->read_file("varfor_vill"); break;
+		else if (preg_match('/^varför ska(.*)/', $input)) return $this->read_file("varfor_ska");
+		else if (preg_match('/^varför (.*)/', $input)) return $this->read_file("varfor");
 
-			case (preg_match('/^varför ska(.*)/', $input) ? true : false): return $this->read_file("varfor_ska"); break;
-			case (preg_match('/^varför (.*)/', $input) ? true : false): return $this->read_file("varfor"); break;
+		//Var
+		else if (preg_match('/^var(.*) är(.*)/', $input)) return $this->read_file("var_ar");
+		else if (preg_match('/^var(.*) får(.*)/', $input)) return $this->read_file("var_far");
+		else if (preg_match('/^var(.*) har(.*)/', $input)) return $this->read_file("var_har");
+		else if (preg_match('/^var(.*) kan(.*)/', $input)) return $this->read_file("var_kan");
+		else if (preg_match('/^var(.*) kommer(.*)/', $input)) return $this->read_file("var_kommer");
+		else if (preg_match('/^var(.*) vill(.*)/', $input)) return $this->read_file("var_vill");
 
-			//Var
-			case (preg_match('/^var(.*) är(.*)/', $input) ? true : false): return $this->read_file("var_ar"); break;
-			case (preg_match('/^var(.*) får(.*)/', $input) ? true : false): return $this->read_file("var_far"); break;
-			case (preg_match('/^var(.*) har(.*)/', $input) ? true : false): return $this->read_file("var_har"); break;
-			case (preg_match('/^var(.*) kan(.*)/', $input) ? true : false): return $this->read_file("var_kan"); break;
-			case (preg_match('/^var(.*) kommer(.*)/', $input) ? true : false): return $this->read_file("var_kommer"); break;
-			case (preg_match('/^var(.*) vill(.*)/', $input) ? true : false): return $this->read_file("var_vill"); break;
+		else if (preg_match('/^var(.*) ska(.*)/', $input)) return $this->read_file("var_ska");
+		else if (preg_match('/^var(.*)bor(.*)du(.*)/', $input)) return $this->read_file("var_bor_du");
+		else if (preg_match('/^var(.*)/', $input)) return $this->read_file("var");
 
-			case (preg_match('/^var(.*) ska(.*)/', $input) ? true : false): return $this->read_file("var_ska"); break;
-			case (preg_match('/^var(.*)bor(.*)du(.*)/', $input) ? true : false): return $this->read_file("var_bor_du"); break;
-			case (preg_match('/^var(.*)/', $input) ? true : false): return $this->read_file("var"); break;
+		//Vem
+		else if (preg_match('/^vem är (.*)/', $input)) return $this->read_wikipedia($words[2]);
 
-			//Vem
-			case (preg_match('/^vem är (.*)/', $input) ? true : false): return $this->read_wikipedia($words[2]); break;
+		else if (preg_match('/^vem är(.*)/', $input)) return $this->read_file("vem_ar");
+		else if (preg_match('/^vem får(.*)/', $input)) return $this->read_file("vem_far");
+		else if (preg_match('/^vem har(.*)/', $input)) return $this->read_file("vem_har");
+		else if (preg_match('/^vem kan(.*)/', $input)) return $this->read_file("vem_kan");
+		else if (preg_match('/^vem kommer(.*)/', $input)) return $this->read_file("vem_kommer");
+		else if (preg_match('/^vem vill(.*)/', $input)) return $this->read_file("vem_vill");
+		else if (preg_match('/^vem ska(.*)/', $input)) return $this->read_file("vem_ska");
 
-			case (preg_match('/^vem är(.*)/', $input) ? true : false): return $this->read_file("vem_ar"); break;
-			case (preg_match('/^vem får(.*)/', $input) ? true : false): return $this->read_file("vem_far"); break;
-			case (preg_match('/^vem har(.*)/', $input) ? true : false): return $this->read_file("vem_har"); break;
-			case (preg_match('/^vem kan(.*)/', $input) ? true : false): return $this->read_file("vem_kan"); break;
-			case (preg_match('/^vem kommer(.*)/', $input) ? true : false): return $this->read_file("vem_kommer"); break;
-			case (preg_match('/^vem vill(.*)/', $input) ? true : false): return $this->read_file("vem_vill"); break;
-			case (preg_match('/^vem ska(.*)/', $input) ? true : false): return $this->read_file("vem_ska"); break;
+		else if (preg_match('/^vem (.*)/', $input)) return $this->read_file("vem");
 
-			case (preg_match('/^vem (.*)/', $input) ? true : false): return $this->read_file("vem"); break;
+		//Vi
+		else if (preg_match('/^vi är(.*)/', $input)) return $this->read_file("vi_ar");
+		else if (preg_match('/^vi får(.*)/', $input)) return $this->read_file("vi_far");
+		else if (preg_match('/^vi har(.*)/', $input)) return $this->read_file("vi_har");
+		else if (preg_match('/^vi kan(.*)/', $input)) return $this->read_file("vi_kan");
+		else if (preg_match('/^vi kommer(.*)/', $input)) return $this->read_file("vi_kommer");
+		else if (preg_match('/^vi vill(.*)/', $input)) return $this->read_file("vi_vill");
 
-			//Vi
-			case (preg_match('/^vi är(.*)/', $input) ? true : false): return $this->read_file("vi_ar"); break;
-			case (preg_match('/^vi får(.*)/', $input) ? true : false): return $this->read_file("vi_far"); break;
-			case (preg_match('/^vi har(.*)/', $input) ? true : false): return $this->read_file("vi_har"); break;
-			case (preg_match('/^vi kan(.*)/', $input) ? true : false): return $this->read_file("vi_kan"); break;
-			case (preg_match('/^vi kommer(.*)/', $input) ? true : false): return $this->read_file("vi_kommer"); break;
-			case (preg_match('/^vi vill(.*)/', $input) ? true : false): return $this->read_file("vi_vill"); break;
+		else if (preg_match('/^vi var(.*)/', $input)) return $this->read_file("vi_var");
 
-			case (preg_match('/^vi var(.*)/', $input) ? true : false): return $this->read_file("vi_var"); break;
+		//Hur
+		else if (preg_match('/^hur gammal(.*)du(.*)/', $input)) return $this->read_file("hur_gammal_du");
+		else if (preg_match('/^hur kan(.*)/', $input)) return $this->read_file("hur_kan");
+		else if (preg_match('/^hur var(.*)/', $input)) return $this->read_file("hur_var");
+		else if (preg_match('/^hur vill(.*)/', $input)) return $this->read_file("hur_vill");
+		else if (preg_match('/^hur(.*)/', $input)) return $this->read_file("hur");
 
-			//Hur
-			case (preg_match('/^hur gammal(.*)du(.*)/', $input) ? true : false): return $this->read_file("hur_gammal_du"); break;
-			case (preg_match('/^hur kan(.*)/', $input) ? true : false): return $this->read_file("hur_kan"); break;
-			case (preg_match('/^hur var(.*)/', $input) ? true : false): return $this->read_file("hur_var"); break;
-			case (preg_match('/^hur vill(.*)/', $input) ? true : false): return $this->read_file("hur_vill"); break;
-			case (preg_match('/^hur(.*)/', $input) ? true : false): return $this->read_file("hur"); break;
+		else if (preg_match('/^(\:\)|\:\(|\:o|\:d)/', $input)) return $this->read_file("smiley");
+		else if (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input)) return $this->read_file("ja");
+		else if (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input)) return $this->read_file("jo");
+		else if (preg_match('/^(nej|nope|nja|no|nejdå|nepp)(.*)/', $input)) return $this->read_file("nej");
 
-			case (preg_match('/^(\:\)|\:\(|\:o|\:d)/', $input) ? true : false): return $this->read_file("smiley"); break;
-			case (preg_match('/^(ja|japp|jao|yes|jadå|jaa)(.*)/', $input) ? true : false): return $this->read_file("ja"); break;
-			case (preg_match('/^(jo|jodå|jo då|joho)(.*)/', $input) ? true : false): return $this->read_file("jo"); break;
-			case (preg_match('/^(nej|nope|nja|no|nejdå|nepp)(.*)/', $input) ? true : false): return $this->read_file("nej"); break;
+		// Din / Ditt
+		else if (preg_match('/^(.*)din(.*)/', $input)) return $this->read_file("din");
+		else if (preg_match('/^(.*)ditt(.*)/', $input)) return $this->read_file("ditt");
 
-			// Din / Ditt
-			case (preg_match('/^(.*)din(.*)/', $input) ? true : false): return $this->read_file("din"); break;
-			case (preg_match('/^(.*)ditt(.*)/', $input) ? true : false): return $this->read_file("ditt"); break;
+		else if ($is_question === TRUE) return $this->read_file("question");
 
-			case ($is_question === TRUE): return $this->read_file("question"); break;
+		else {
+			$random = rand(1,8);
+			if ($random == 1) $answer = $this->send_image("cat");
+			else if ($random == 2 || $random == 3) $answer = $this->get_talked_about();
+			else if ($random == 4) $answer = $this->get_random_wikipedia_article();
+			else $answer = $this->read_file("default_answer");
 
-			default:
-				$random = rand(1,8);
-				if ($random == 1) $answer = $this->send_image("cat");
-				else if ($random == 2 || $random == 3) $answer = $this->get_talked_about();
-				else if ($random == 4) $answer = $this->get_random_wikipedia_article();
-				else $answer = $this->read_file("default_answer");
-
-				return $answer;
-				break;
+			return $answer;
 		}
 	}
 
