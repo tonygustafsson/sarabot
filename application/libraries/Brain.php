@@ -173,8 +173,8 @@ class Brain
 		else if (preg_match('/^(det samma|det samma|detsamma|desamma)(.*)/', $input)) return $this->CI->file->read("det_samma");
 
 		//Du
-		else if (preg_match('/^du(.*)är(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input)) return $this->CI->file->read("du_snygg");
-		else if (preg_match('/^vad(.*)(snygg|het|läcker|sexig|söt)(.*)/', $input)) return $this->CI->file->read("du_snygg");
+		else if (preg_match('/^du(.*)är(.*)(snygg|läcker|sexig|söt)(.*)/', $input)) return $this->CI->file->read("du_snygg");
+		else if (preg_match('/^vad(.*)(snygg|läcker|sexig|söt)(.*)/', $input)) return $this->CI->file->read("du_snygg");
 
 		else if (preg_match('/^du är(.*)/', $input)) return $this->CI->file->read("du_ar");
 		else if (preg_match('/^du får(.*)/', $input)) return $this->CI->file->read("du_far");
