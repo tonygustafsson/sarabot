@@ -31,8 +31,10 @@ class Brain
 
 		else if (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input)) return $this->get_calc($raw_input);
  
-		else if (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input)) return $this->get_date();
-		else if (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input)) return $this->get_week();
+ 		else if (preg_match('/^vad är (.*)(klockan|tiden)/', $input)) return $this->read_file("vad_klockan", date("H.i"));
+		else if (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input)) return $this->read_file("vad_datum", date("Y-m-d"));
+		else if (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input)) return  $this->read_file("vad_vecka", date("W"));
+		
 		else if (preg_match('/^(vad)(.*)heter(.*)jag/', $input)) return $this->CI->namememory->retrieve();
 		else if (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input)) return $this->CI->namememory->retrieve();
 
@@ -229,7 +231,6 @@ class Brain
 		//Vad
 		else if (preg_match('/^vad är (.*)(en|ett) (.*)/', $input)) return $this->CI->wikipedia->read($words[3]);
 		else if (preg_match('/^vad är (.*)/', $input)) return $this->CI->wikipedia->read($words[2]);
-		else if (preg_match('/^vad är (.*)(klockan|tiden)/', $input)) return $this->get_time();
 
 		else if (preg_match('/^(vad|vem)(.*)är(.*)du/', $input)) return $this->read_file("vad_ar_du");
 		else if (preg_match('/^(vad|vem)(.*)(skapat|skapare)(.*)/', $input)) return $this->read_file("vem_skapat_dig");
@@ -358,24 +359,6 @@ class Brain
 			$output = array('answer' => "Error: Could not find file!", 'file' => "Error!");
 			return $output;
 		}
-	}
-
-	public function get_time()
-	{
-		$output = $this->read_file("vad_klockan", date("H.i"));
-		return $output;
-	}
-
-	public function get_date()
-	{
-		$output = $this->read_file("vad_datum", date("Y-m-j"));
-		return $output;
-	}
-
-	public function get_week()
-	{
-		$output = $this->read_file("vad_vecka", date("W"));
-		return $output;
 	}
 
 	public function get_calc($input)
