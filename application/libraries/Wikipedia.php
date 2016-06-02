@@ -17,17 +17,17 @@ class Wikipedia
 		$article = (Array)$obj->query->pages;
 
 		if (count($article) == 0)
-			return $this->CI->brain->read_file("default_answer");
+			return $this->CI->file->read("default_answer");
 
 		$article = reset($article);
 
 		if (!isset($article->extract))
-			return $this->CI->brain->read_file("default_answer");
+			return $this->CI->file->read("default_answer");
 
 		$extract = $article->extract;
 
 		if (empty(str_replace(".", "", $extract)))
-			return $this->CI->brain->read_file("default_answer");
+			return $this->CI->file->read("default_answer");
 
 		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
 

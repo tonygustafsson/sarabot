@@ -51,7 +51,7 @@ class Wordmemory
 			$word = $word[0];
 		}
 
-		$answer = $this->CI->brain->read_file("du_namnde", $word);
+		$answer = $this->CI->file->read("du_namnde", $word);
 
 		return array('answer' => $answer['answer'], 'answer_id' => 'Talked about');
 	}

@@ -47,7 +47,7 @@ class Namememory
 		$this->CI->session->set_userdata('name', $name);
 		$this->CI->session->set_userdata('ask_for_name', 'false');
 
-		$answer = $this->CI->brain->read_file("remember_name", $name);
+		$answer = $this->CI->file->read("remember_name", $name);
         $output = array('answer' => $answer['answer'], 'answer_id' => 'Remember name');
 
 		return $output;
@@ -55,7 +55,7 @@ class Namememory
 
 	public function retrieve()
 	{
-		$output = $this->CI->brain->read_file("vad_heter_jag", $this->CI->session->userdata('name'));
+		$output = $this->CI->file->read("vad_heter_jag", $this->CI->session->userdata('name'));
 		return $output;
 	}
 }
