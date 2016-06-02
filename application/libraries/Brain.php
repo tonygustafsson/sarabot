@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Brain
 {
@@ -18,22 +19,22 @@ class Brain
 
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
 		{
-			$name = $this->parse_name($words);
-			return $this->remember_name($name);
+			$name = $this->CI->namememory->parse($words);
+			return $this->CI->namememory->remember($name);
 		}
 
 		// Look for unusual words, and save to to have something to talk about
 		$this->CI->wordmemory->remember_words($input);
 
 		//Special
-		if (preg_match('/^jag heter (.*)/', $input)) return $this->remember_name($input);
+		if (preg_match('/^jag heter (.*)/', $input)) return $this->CI->namememory->remember($input);
 
 		else if (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input)) return $this->get_calc($raw_input);
  
 		else if (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input)) return $this->get_date();
 		else if (preg_match('/^(vad|vilken)(.*)vecka(.*)/', $input)) return $this->get_week();
-		else if (preg_match('/^(vad)(.*)heter(.*)jag/', $input)) return $this->get_name();
-		else if (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input)) return $this->get_name();
+		else if (preg_match('/^(vad)(.*)heter(.*)jag/', $input)) return $this->CI->namememory->retrieve();
+		else if (preg_match('/^(vad)(.*)är(.*)mitt(.*)namn/', $input)) return $this->CI->namememory->retrieve();
 
 		else if (preg_match('/^(hejdå|farväl|hej då|far väl|baj baj|bye|quit)(.*)/', $input)) return $this->read_file("hej_da");
 		else if (preg_match('/^(hej|tjena|morrs|hallå|hejsan|halloj)(.*)/', $input)) return $this->read_file("hej");
@@ -422,54 +423,6 @@ class Brain
 	public function get_week()
 	{
 		$output = $this->read_file("vad_vecka", date("W"));
-		return $output;
-	}
-
-	public function parse_name($words)
-	{
-		$position = 0;
-
-		$ignored_words = array('jag', 'heter', 'mitt', 'namn', 'är', 'namnet', 'hej');
-
-		foreach ($words as $key => $word)
-		{
-			if (in_array($word, $ignored_words))
-			{
-				unset($words[$key]);
-			}
-		}
-
-		if (count($words) < 1)
-		{
-			return "Främling";
-		}
-
-		$name = array_values($words)[0];
-
-		return $name;
-	}
-
-	public function remember_name($input)
-	{
-		if ($this->CI->session->userdata('ask_for_name') == 'true')
-		{
-			$name = ucfirst(strtolower($input));
-		}
-		else
-		{
-			preg_match_all('/[\wåäöÅÄÖ]+/', $input, $array);
-			$name = ucfirst(strtolower($array[0][2]));
-		}
-
-		$this->CI->session->set_userdata('name', $name);
-		$this->CI->session->set_userdata('ask_for_name', 'false');
-
-		return array('answer' => 'Trevligt att råkas, ' . $name . '. :)', 'answer_id' => 'Remember name');
-	}
-
-	public function get_name()
-	{
-		$output = $this->read_file("vad_heter_jag", $this->CI->session->userdata('name'));
 		return $output;
 	}
 
