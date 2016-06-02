@@ -227,8 +227,8 @@ class Brain
 		else if (preg_match('/^när (.*)/', $input)) return $this->read_file("nar");
 
 		//Vad
-		else if (preg_match('/^vad är (.*)(en|ett) (.*)/', $input)) return $this->read_wikipedia($words[3]);
-		else if (preg_match('/^vad är (.*)/', $input)) return $this->read_wikipedia($words[2]);
+		else if (preg_match('/^vad är (.*)(en|ett) (.*)/', $input)) return $this->CI->wikipedia->read($words[3]);
+		else if (preg_match('/^vad är (.*)/', $input)) return $this->CI->wikipedia->read($words[2]);
 		else if (preg_match('/^vad är (.*)(klockan|tiden)/', $input)) return $this->get_time();
 
 		else if (preg_match('/^(vad|vem)(.*)är(.*)du/', $input)) return $this->read_file("vad_ar_du");
@@ -279,7 +279,7 @@ class Brain
 		else if (preg_match('/^var(.*)/', $input)) return $this->read_file("var");
 
 		//Vem
-		else if (preg_match('/^vem är (.*)/', $input)) return $this->read_wikipedia($words[2]);
+		else if (preg_match('/^vem är (.*)/', $input)) return $this->CI->wikipedia->read($words[2]);
 
 		else if (preg_match('/^vem är(.*)/', $input)) return $this->read_file("vem_ar");
 		else if (preg_match('/^vem får(.*)/', $input)) return $this->read_file("vem_far");
@@ -323,7 +323,7 @@ class Brain
 			$random = rand(1,8);
 			if ($random == 1) $answer = $this->CI->images->send();
 			else if ($random == 2 || $random == 3) $answer = $this->CI->wordmemory->mention_memory();
-			else if ($random == 4) $answer = $this->get_random_wikipedia_article();
+			else if ($random == 4) $answer = $this->CI->wikipedia->read_random();
 			else $answer = $this->read_file("default_answer");
 
 			return $answer;
@@ -358,46 +358,6 @@ class Brain
 			$output = array('answer' => "Error: Could not find file!", 'file' => "Error!");
 			return $output;
 		}
-	}
-
-	public function read_wikipedia($word)
-	{
-		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&exchars=200&titles=" . $word;
-
-		$json = file_get_contents($url);
-		$obj = json_decode($json);
-		$article = (Array)$obj->query->pages;
-
-		if (count($article) == 0)
-			return $this->read_file("default_answer");
-
-		$article = reset($article);
-
-		if (!isset($article->extract))
-			return $this->read_file("default_answer");
-
-		$extract = $article->extract;
-
-		if (empty(str_replace(".", "", $extract)))
-			return $this->read_file("default_answer");
-
-		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: ' . $word);
-
-		return $output;
-	}
-
-	public function get_random_wikipedia_article()
-	{
-		$url = "https://sv.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&generator=random&exchars=200";
-
-		$json = file_get_contents($url);
-		$obj = json_decode($json);
-		$article = (Array)$obj->query->pages;
-		$extract = reset($article)->extract;
-		$extract = strip_tags($extract);
-
-		$output = array('answer' => $extract, 'answer_id' => 'Wikipedia: RANDOM');
-		return $output;
 	}
 
 	public function get_time()
