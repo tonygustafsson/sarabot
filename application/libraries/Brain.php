@@ -29,7 +29,7 @@ class Brain
 		//Special
 		if (preg_match('/^jag heter (.*)/', $input)) return $this->CI->namememory->remember($input);
 
-		else if (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input)) return $this->get_calc($raw_input);
+		else if (preg_match('/(.*)[0-9]+\s[\+\-\*\/]\s[0-9]+(.*)/', $raw_input)) return $this->CI->calc->get($raw_input);
  
  		else if (preg_match('/^vad är (.*)(klockan|tiden)/', $input)) return $this->read_file("vad_klockan", date("H.i"));
 		else if (preg_match('/^(vad|vilket) är (.*)(datum|dag|månad)/', $input)) return $this->read_file("vad_datum", date("Y-m-d"));
@@ -360,32 +360,6 @@ class Brain
 			return $output;
 		}
 	}
-
-	public function get_calc($input)
-	{
-		preg_match_all('/[0-9\+\-\*\/]+/', $input, $array);
-
-		switch ($array[0][1])
-		{
-			case "+":
-				$result = $array[0][0] + $array[0][2];
-				break;
-			case "-":
-				$result = $array[0][0] - $array[0][2];
-				break;
-			case "*":
-				$result = $array[0][0] * $array[0][2];
-				break;
-			case "/":
-				$result = $array[0][0] / $array[0][2];
-				break;
-			default:
-				$result = "Jag kan inte räkna så bra... :(";
-		}
-
-		return array('answer' => $result, 'answer_id' => 'Calculator');
-	}
-
 }
 
 /* End of file Brain.php */
