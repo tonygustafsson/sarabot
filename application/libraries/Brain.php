@@ -23,7 +23,7 @@ class Brain
 		}
 
 		// Look for unusual words, and save to to have something to talk about
-		$this->save_unusual_words($input);
+		$this->CI->wordmemory->remember_words($input);
 
 		//Special
 		if (preg_match('/^jag heter (.*)/', $input)) return $this->remember_name($input);
@@ -237,7 +237,7 @@ class Brain
 		else if (preg_match('/^vad(.*)heter(.*)du/', $input)) return $this->read_file("vad_heter_du");
 		else if (preg_match('/^vad(.*)heter(.*)/', $input)) return $this->read_file("vad_heter");
 		else if (preg_match('/^vad(.*)kan(.*)du/', $input)) return $this->read_file("vad_kan_du");
-		else if (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input)) return $this->get_knowledge();
+		else if (preg_match('/^vad(.*)vet(.*)om(.*)mig/', $input)) return $this->CI->wordmemory->retrieve();
 		else if (preg_match('/^vad(.*)trevligt/', $input)) return $this->read_file("vad_trevligt");
 		else if (preg_match('/^vad(.*)vet(.*)du/', $input)) return $this->read_file("vad_vet_du");
 
@@ -321,7 +321,7 @@ class Brain
 		else {
 			$random = rand(1,8);
 			if ($random == 1) $answer = $this->send_image("cat");
-			else if ($random == 2 || $random == 3) $answer = $this->get_talked_about();
+			else if ($random == 2 || $random == 3) $answer = $this->CI->wordmemory->mention_memory();
 			else if ($random == 4) $answer = $this->get_random_wikipedia_article();
 			else $answer = $this->read_file("default_answer");
 
@@ -357,91 +357,6 @@ class Brain
 			$output = array('answer' => "Error: Could not find file!", 'file' => "Error!");
 			return $output;
 		}
-	}
-
-	public function get_knowledge()
-	{
-		$name = $this->CI->session->userdata('name');
-		$remembered_words = $this->CI->session->userdata('unusual_words');
-
-		$answer = "";
-
-		if (!empty($name))
-		{
-			$answer .= "Ditt namn är " . $name . ".";
-		}
-
-		if (count($remembered_words) > 0)
-		{
-			$answer .= " Du gillar att prata om ";
-
-			for ($x = 0; $x < count($remembered_words); $x++)
-			{
-				$answer .= $remembered_words[$x];
-				if ($x == count($remembered_words) - 2)
-				{
-					$answer .= " och ";
-				}
-				else if ($x < count($remembered_words) - 1)
-				{
-					$answer .= ", ";
-				}
-				else
-				{
-					$answer .= ".";
-				}
-			}
-		}
-
-		return array('answer' => $answer, 'answer_id' => 'Get knowledge');
-	}
-
-	public function get_talked_about()
-	{
-		$word = "kebab";
-		$remembered_words = $this->CI->session->userdata('unusual_words');
-
-		if (count($remembered_words) > 0)
-		{
-			shuffle($remembered_words);
-			$word = array_slice($remembered_words, 0, 1);
-			$word = $word[0];
-		}
-
-		$answer = $this->read_file("du_namnde", $word);
-
-		return array('answer' => $answer['answer'], 'answer_id' => 'Talked about');
-	}
-
-	public function save_unusual_words($words)
-	{
-		$text_file = BASEPATH . '../assets/text/lists/usual_words.txt';
-
-		$handle = fopen($text_file, "r");
-		$contents = fread($handle, filesize($text_file));
-		fclose($handle);
-
-		$usual_words = explode("\r\n", $contents);
-		$words = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $words);
-		$words = strtolower($words);
-		$word_array = explode(" ", $words);
-
-		$remembered_words = array();
-
-		if ($this->CI->session->userdata('unusual_words') !== NULL)
-		{
-			$remembered_words = $this->CI->session->userdata('unusual_words');
-		}
-
-		foreach ($word_array as $word)
-		{
-			if (!in_array($word, $remembered_words) && !in_array($word, $usual_words))
-			{
-				$remembered_words[] = $word;
-			}
-		}
-
-		$this->CI->session->set_userdata('unusual_words', $remembered_words);
 	}
 
 	public function send_image($motive)
