@@ -50,14 +50,6 @@ class Bot extends CI_Controller {
 		write_file($file, $output, 'a+');
 	}
 
-	public function about()
-	{
-		date_default_timezone_set('Europe/Stockholm');
-		$this->load->view('html_top');
-		$this->load->view('about');
-		$this->load->view('html_bottom');
-	}
-
 	public function forget()
 	{
 		$this->session->sess_destroy();

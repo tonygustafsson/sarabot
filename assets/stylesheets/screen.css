@@ -83,6 +83,13 @@ p {
 	max-width: 100%;	
 }
 
+.fork-me img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -114,6 +121,10 @@ footer p a {
 	
 	.bot-img {
 		max-width: 100%;
+	}
+	
+	.fork-me img {
+		display: none;
 	}
 	
 	input[type=text] {
