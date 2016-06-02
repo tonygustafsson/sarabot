@@ -11,7 +11,9 @@ class Brain
 	{
 		$is_question = strpos($input, "?") !== FALSE;
 		$raw_input = $input;
-		$input = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $input);
+		$input = strtolower($input);
+		$input = str_replace("ÅÄÖ", "åäö", $input);
+		$input = preg_replace("/[^A-Za-z0-9\-åäö ]/", "", $input);
 		$words = explode(" ", $input);
 
 		if ($this->CI->session->userdata('ask_for_name') == 'true')
@@ -327,18 +329,25 @@ class Brain
 		}
 	}
 
-	public function read_file($file, $replacement = "")
+	public function read_file($file, $first_var = "")
 	{
 		$text_file = BASEPATH . '../assets/text/answers/' . $file . '.txt';
 
 		if (file_exists($text_file))
 		{
+			// Get file contents
 			$handle = fopen($text_file, "r");
 			$contents = fread($handle, filesize($text_file));
 			fclose($handle);
+			
+			// Get a random answer
 			$contents = explode("\n", $contents);
 			$row = $contents[rand(0, count($contents) - 1)];
-			$row = str_replace("{0}", $replacement, $row);
+			
+			// Replace variables
+			$name = ($this->CI->session->userdata('name') != "") ? $this->CI->session->userdata('name') : 'Främling';
+			$row = str_replace("{name}", $name, $row);
+			$row = str_replace("{0}", $first_var, $row);
 
 			$output = array('answer' => $row, 'answer_id' => $file);
 			return $output;

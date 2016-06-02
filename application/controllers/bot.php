@@ -24,11 +24,7 @@ class Bot extends CI_Controller {
 			date_default_timezone_set('Europe/Stockholm');
 			$this->benchmark->mark('before_answer');
 
-			$name = ($this->session->userdata('name') != "") ? $this->session->userdata('name') : 'Främling';
-
-			$input = strtolower(strtr($this->input->post('input'), "ÅÄÖ", "åäö"));
-			$answer = $this->brain->get_answer($input);
-			$answer['answer'] = str_replace("{name}", $name, $answer['answer']);
+			$answer = $this->brain->get_answer($this->input->post('input'));
 
 			$this->benchmark->mark('after_answer');
 			$benchmark = $this->benchmark->elapsed_time('before_answer', 'after_answer');
