@@ -64,7 +64,8 @@ class Wordmemory
 		$contents = fread($handle, filesize($text_file));
 		fclose($handle);
 
-		$usual_words = explode("\r\n", $contents);
+		$contents = str_replace("\r\n", "\n", $contents);
+		$usual_words = explode("\n", $contents);
 		$words = preg_replace("/[^A-Za-z0-9\-åäöÅÄÖ ]/", "", $words);
 		$words = strtolower($words);
 		$word_array = explode(" ", $words);
