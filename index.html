@@ -1,64 +1,77 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Sarabot by tonygustafsson</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Sarabot</h1>
-      <h2 class="project-tagline">An web based AI bot - Swedish only!</h2>
-      <a href="https://github.com/tonygustafsson/sarabot" class="btn">View on GitHub</a>
-      <a href="https://github.com/tonygustafsson/sarabot/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/tonygustafsson/sarabot/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <div class="wrapper">
+      <header>
+        <h1>Sarabot</h1>
+        <p>An web based AI bot - Swedish only!</p>
 
-    <section class="main-content">
-      <p>What is SaraBot?</p>
+        <p class="view"><a href="https://github.com/tonygustafsson/sarabot">View the Project on GitHub <small>tonygustafsson/sarabot</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tonygustafsson/sarabot/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tonygustafsson/sarabot/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tonygustafsson/sarabot">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="what-is-sarabot" class="anchor" href="#what-is-sarabot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is SaraBot?</h1>
 
 <p>She is a swedish talking bot. Just for fun.
 The following will be in swedish.</p>
 
-<p>Vad är Sarabot?</p>
+<h1>
+<a id="vad-är-sarabot" class="anchor" href="#vad-%C3%A4r-sarabot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vad är Sarabot?</h1>
 
 <p>Hon är en simulerad intelligens. Man kan inte kalla henne en AI riktigt, eftersom hon inte "tänker efter" själv, och hittar på egna meningsbyggnader.
 I stället är hon förprogrammerad att reagera på vissa ordföljder, och svarar utefter detta. Dock slumpmässigt, så hon ger skenet att verka smart.</p>
 
-<p>Hur fungerar Sarabot?</p>
+<h2>
+<a id="hur-fungerar-sarabot" class="anchor" href="#hur-fungerar-sarabot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hur fungerar Sarabot?</h2>
 
 <p>Ganska simpelt. Beroende på vad du skriver in triggas olika funktioner. Den vanligaste funktionen hämtar in en textfil och slumpar fram ett svar därifrån
 som borde passa till det du skrivt. Skriver du "Hej Sara" så reagerar hon på "Hej" och kollar i hej.txt. Frågar du "Vad är en köttbulle"
 så anropas en annan funktion där hon kollar i Wikipedia. "Vad är klockan" är ytterligare en funktion, osv.</p>
 
-<p>Varför är hon så korkad?</p>
+<h2>
+<a id="varför-är-hon-så-korkad" class="anchor" href="#varf%C3%B6r-%C3%A4r-hon-s%C3%A5-korkad" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Varför är hon så korkad?</h2>
 
 <p>Det har inte lagts nog med tid åt att se över vad hon svarar på, och när. De ska bli bättre framöver.
 Vissa av textfilerna som hon hämtar sina svar från har inte setts över sedan hon var en IRC-bot, och då och då kan det nog komma något stötande. Ber om ursäkt för detta.</p>
 
-<p>Sparas det jag skriver till henne?</p>
+<h2>
+<a id="sparas-det-jag-skriver-till-henne" class="anchor" href="#sparas-det-jag-skriver-till-henne" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sparas det jag skriver till henne?</h2>
 
 <p>Det loggas i utbildningssyfte, ja. Tanken är att man ska kunna gå tillbaka och se när hon svarat fel, och kunna  förbättra det.
 Men inga personliga detaljer lagras mer än det du själv skriver, och det kommer aldrig att ges till tredje part. När loggarna lästs och 
 actions har tagits, så tas de bort.</p>
 
-<p>Vad händer i framtiden?</p>
+<h2>
+<a id="vad-händer-i-framtiden" class="anchor" href="#vad-h%C3%A4nder-i-framtiden" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vad händer i framtiden?</h2>
 
 <p>Planen är att hon ska fortsätta utvecklas, framför allt med de vanliga svaren på frågorna, men också smarta funktioner som att kunna kolla saker på nätet,
 lära sig av vad andra skriver, och hitta på egna meningar.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/tonygustafsson/sarabot">Sarabot</a> is maintained by <a href="https://github.com/tonygustafsson">tonygustafsson</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tonygustafsson">tonygustafsson</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
-    </section>
-
-  
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
