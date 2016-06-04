@@ -4,7 +4,7 @@
 	<footer>
 		<p>
 			<span id="debug"></span>
-			<a href="https://github.com/tonygustafsson/sarabot">Om Sarabot</a>&nbsp;&nbsp;&nbsp;<a href="http://www.tonyg.se/">Tony Gustafsson&copy;</a>
+			<a href="http://tonygustafsson.github.io/sarabot/">Om Sarabot</a>&nbsp;&nbsp;&nbsp;<a href="http://www.tonyg.se/">Tony Gustafsson&copy;</a>
 		</p>
 	</footer>
 	
