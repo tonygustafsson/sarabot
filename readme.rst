@@ -25,7 +25,7 @@ Det loggas i utbildningssyfte, ja. Tanken är att man ska kunna gå tillbaka och
 Men inga personliga detaljer lagras mer än det du själv skriver, och det kommer aldrig att ges till tredje part. När loggarna lästs och 
 actions har tagits, så tas de bort.
 
-# Vad händer i framtiden?
+## Vad händer i framtiden?
 
 Planen är att hon ska fortsätta utvecklas, framför allt med de vanliga svaren på frågorna, men också smarta funktioner som att kunna kolla saker på nätet,
 lära sig av vad andra skriver, och hitta på egna meningar.
