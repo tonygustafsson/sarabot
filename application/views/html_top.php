@@ -17,4 +17,4 @@
 <body>
 
 	<section id="main">
-		<h1><a href="<?php echo base_url()?>" title="Gå till startsidan">Sarabot</a></h1>
+		<h1><a href="<?php echo base_url()?>" title="Gå till startsidan">sarabot.</a></h1>
