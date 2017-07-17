@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url()?>assets/stylesheets/screen.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url('assets/stylesheets/screen.css')?>">
 
 	<title>Sarabot</title>
 </head>

@@ -11,7 +11,7 @@
 </section>
 
 <a href="<?php echo base_url()?>" title="Gå till startsidan">
-	<img src="<?php echo base_url()?>assets/images/bot.jpg" class="bot-img" alt="Sarabot">
+	<img src="<?php echo base_url('assets/images/bot.jpg')?>" class="bot-img" alt="Sarabot">
 </a>
 
 <form method="post" id="dialog_form" class="dialog-form" action="<?=base_url('bot/speak')?>">
