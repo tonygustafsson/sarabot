@@ -4,6 +4,9 @@
 She is a swedish talking bot. Just for fun.
 The following will be in swedish.
 
+## Swedish demo
+http://www.tonyg.se/projects/sarabot/
+
 ## Vad är Sarabot?
 Hon är en simulerad intelligens. Man kan inte kalla henne en AI riktigt, eftersom hon inte "tänker efter" själv, och hittar på egna meningsbyggnader. I stället är hon förprogrammerad att reagera på vissa ordföljder, och svarar utefter detta. Dock slumpmässigt, så hon ger skenet att verka smart. Ibland.
 
